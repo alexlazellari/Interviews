@@ -1,4 +1,4 @@
-/*********************** Activities styling ***********************/
+/*********************** Main styling ***********************/
 
 .main{
     min-height: calc(100vh - 4.5rem);
@@ -30,6 +30,63 @@
 .main__section{
     padding: 1rem 0;
 }
+
+/*********************** End main styling ***********************/
+
+
+
+/*********************** Tips styling ***********************/
+
+.tip{
+    border-radius: 15px;
+    box-shadow: 0 0 10px 0 rgba(80, 80, 80, 0.4);
+    margin: 0 auto;
+    margin-bottom: 2rem;
+    max-width: 175px;
+    padding: .75rem;
+    transform: scale(0);
+    text-align: center;
+}
+
+.tip:nth-of-type(1){
+    animation: scaleUp 1s ease-in-out .5s forwards;
+}
+
+.tip:nth-of-type(2){
+    animation: scaleUp 1s ease-in-out 1.5s forwards;
+}
+
+.tip:nth-of-type(3){
+    animation: scaleUp 1s ease-in-out 2.3s forwards;
+}
+
+@keyframes scaleUp {
+    0%{
+        transform: scale(0);
+    }
+    70%{
+        transform: scale(1.05);
+    }
+    100%{
+        transform: scale(1);
+    }
+}
+
+
+
+.tip__header{
+    margin-bottom: .5rem;
+}
+
+.tip__copy{
+    font-size: .9rem;
+}
+
+/*********************** End tips styling ***********************/
+
+
+
+/*********************** Activities styling ***********************/
 
 .activities{
     border-collapse: collapse;
@@ -115,6 +172,25 @@
 
 @media screen and ( min-width: 520px) {
 
+    
+    /* Tips styling */
+
+    .tips{
+        display: flex;
+        justify-content: space-evenly;
+        flex-wrap: wrap;
+    }
+
+    .tip{
+        margin: 2rem 2rem;
+    }
+
+    /* End tips styling */
+    
+
+
+    /* Activities styling */
+
     .activities__header{
         padding: .75rem 1rem;
     }
@@ -122,6 +198,8 @@
     .activities__datacell{
         padding: .75rem 1rem;
     }
+    
+    /* End activities styling */
 }
 
 /*********************** Media queries ***********************/
