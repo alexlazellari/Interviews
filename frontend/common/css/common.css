@@ -27,7 +27,7 @@ body {
     background-color: #fff;
     border: 1px solid lightgrey;
     font-size: 1rem;
-    min-width: 280px;
+    min-width: 260px;
     padding: .75rem 0;
 }
 
@@ -70,6 +70,7 @@ body {
 
 .footer{
     /* background: linear-gradient(#fff,#eee); */
+    min-width: 260px;
     padding: 1rem 0;
 }
 

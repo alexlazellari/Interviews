@@ -1,22 +1,88 @@
 /*********************** Activities styling ***********************/
 
-.activities{
+.main{
     height: calc(100vh - 4.5rem);
     margin: 0 auto;
     margin-top: 3rem;
     max-width: 1120px;
+    min-height: calc(300px - 4.5rem);
+    min-width: 260px;
+    position: relative;
     width: 90%;
 }
 
-.activities__table{
-    width: 100%;
+.activities{
     border-collapse: collapse;
-    border: 1px solid #222;
-    color:#222;
+    box-shadow: 0 0 7px 0 rgba(80, 80, 80, 0.4);
+    border-radius: 7px;
+    color:#333;
+    font-size: .75rem;
+    width: 100%;
 }
 
-th{
+.activities__header{
+    background-color: rgba(255, 152, 0, 0.8);
+    color: #fff;
+    padding: .25rem;
     text-align: start;
+}
+
+.activities__row{
+    background-color: rgba(200, 200, 200, 0.1);
+    border-radius: 0 0 7px 7px;
+    transition: transform .6s, background-color .3s;
+}
+
+.activities__row:hover{
+    box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.4);
+    cursor: pointer;
+    transform: scale(1.05);
+    background-color: #fff;
+}
+
+.activities__row:nth-of-type(2n+1){
+    background-color: rgba(255, 152, 0, 0.4);
+}
+
+.activities__row:nth-of-type(2n+1):hover{
+    background-color: rgba(255, 152, 0, 0.8);
+}
+
+.activities__row:last-of-type .activities__datacell:nth-of-type(1){
+    border-radius: 0 0 0 7px;
+}
+
+.activities__row:last-of-type .activities__datacell:nth-of-type(3){
+    border-radius: 0 0 7px 0;
+}
+
+.activities__datacell{
+    /* border: 1px solid #ff9800; */
+    padding:  .25rem;
+}
+
+.activities__actions{
+    padding-top: 2rem;
+    text-align: center;
+}
+
+.btn{
+    background-color: transparent;
+    border: none;
+    border-radius: 5px;
+    bottom: 2.5rem;
+    cursor: pointer;
+    left: 50%;
+    font-size: .75rem;
+    outline: none;
+    padding: .25rem .25rem;
+    position: absolute;
+    transform: translateX(-50%);
+    transition: outline .5s;
+}
+
+.btn:hover{
+    outline: 1px solid #ff9800;
 }
 
 /*********************** End activities styling ***********************/

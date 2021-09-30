@@ -1,15 +1,24 @@
 /*********************** Main styling ***********************/
 
 .main{
-    height: calc(100vh - 4.5rem);
+    min-height: calc(100vh - 4.5rem);
     margin: 0 auto;
     margin-top: 3rem;
     max-width: 1120px;
+    margin-bottom: 3rem;
+    min-width: 260px;
     width: 90%;
 }
 
 .main__title{
     text-align: center;
+}
+
+.main__picture{
+    display: inline-block;
+    margin-top: 2rem;
+    text-align: center;
+    width: 100%;
 }
 
 .bored{
@@ -19,6 +28,7 @@
 .main__section{
     margin-top: 4rem;
 }
+
 
 .main__actions{
     margin-top: 5rem;
