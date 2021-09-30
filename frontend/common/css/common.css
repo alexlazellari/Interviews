@@ -34,7 +34,7 @@ body {
 .nav__logo{
     color: #ff9800;
     font-family: Dancing_Script;
-    font-size: 1.25rem;
+    font-size: 1.5rem;
     font-weight: 600;
     letter-spacing: 2px;
 }
@@ -53,13 +53,39 @@ body {
 }
 
 .nav__item {
-    margin-right: .75rem;
+    border-radius: 5px;
+    cursor: pointer;
+  
+    
+}
+
+.nav__link:hover{
+    color: #000;
+    background-color: rgba(170, 170, 170, 0.4);
+}
+
+.nav__item:last-of-type{
+    margin-right: 0;
 }
 
 .nav__link {
-    color: #222;
-    font-size: .9rem;
+    border-radius: 5px;
+    color: #333;
+    display: inline-block;
+    margin: 0 .25rem;
+    padding: .75rem;
     text-decoration: none;
+    transition: .4s background-color;
+
+
+}
+
+.active{
+    color:#ff9800
+}
+
+.fas{
+    font-size: 1.3rem;
 }
 
 /*********************** End navbar styling ***********************/

@@ -21,8 +21,10 @@
      <link rel="stylesheet" href="./activities.css">
      <link rel="stylesheet" href="../../common/css/common.css">
      <!-- JavaScript -->
+     <script src="../../common/javascript/common.js" defer></script>
      <script src="./activities.js" defer></script>
-</head>
+     <!-- Font awesome -->
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css" />
 <body>
 
     <!-- Navbar -->
@@ -36,13 +38,14 @@
 
             <ul class="nav__list">
                 <li class="nav__item">
-                    <a href="../../index.html" class="nav__link">Home</a>
+                    <a href="../../index.html" class="nav__link">
+                        <i class="fas fa-home" title="Home"></i>
+                    </a>
                 </li>
                 <li class="nav__item">
-                    <a href="./activities.html" class="nav__link">Activities</a>
-                </li>
-                <li class="nav__item">
-                    <a href="#" class="nav__link">About</a>
+                    <a href="./activities.html" class="nav__link">
+                        <i class="fas fa-puzzle-piece" title="Activities"></i>
+                    </a>
                 </li>
             </ul>
 
@@ -52,30 +55,25 @@
     <!-- End navbar -->
 
     <main class="main">
-        <table class="activities">
-            <thead class="activities__head">
-                <th class="activities__header">Activity</th>
-                <th class="activities__header">Type</th>
-                <th class="activities__header">Participants</th>
-            </thead>
-            <tbody class="activities__body">
-                <tr class="activities__row">
-                    <td class="activities__datacell">Learn how to play a new sport</td> 
-                    <td class="activities__datacell">Recreational</td>
-                    <td class="activities__datacell">1</td>
-                </tr>
-                <tr class="activities__row">
-                    <td class="activities__datacell">Learn how to play a new sport</td> 
-                    <td class="activities__datacell">Recreational</td>
-                    <td class="activities__datacell">1</td>
-                </tr>
-                <tr class="activities__row">
-                    <td class="activities__datacell">Learn how to play a new sport</td> 
-                    <td class="activities__datacell">Recreational</td>
-                    <td class="activities__datacell">1</td>
-                </tr>
-            </tbody>
-        </table>
+        <header class="main__header">
+            <h1 class="main__title">Activity list</h1>
+            <h5 class="main__subtitle">
+                The activity list is where our suggestions for escaping boredom will be. 
+                In addition, there are fields like the number of participants that help you take your entertainment to a different level of enjoyment!
+            </h5>
+        </header>
+        <section class="main__section">
+            <table class="activities">
+                <thead class="activities__head">
+                    <th class="activities__header">Activity</th>
+                    <th class="activities__header">Type</th>
+                    <th class="activities__header">Participants</th>
+                </thead>
+                <tbody class="activities__body">
+                </tbody>
+            </table>
+        </section>
+        
         <div class="main__actions">
             <button type="button" class="main__action btn">GET NEXT ACTIVITY</button>
         </div>

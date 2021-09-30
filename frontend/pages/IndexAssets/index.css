@@ -3,9 +3,9 @@
 .main{
     min-height: calc(100vh - 4.5rem);
     margin: 0 auto;
-    margin-top: 3rem;
+    margin-top: 4rem;
     max-width: 1120px;
-    margin-bottom: 3rem;
+    padding-bottom: 3rem;
     min-width: 260px;
     width: 90%;
 }
@@ -29,9 +29,17 @@
     margin-top: 4rem;
 }
 
+.main__content{
+    letter-spacing: 1px;
+    line-height: 1.5rem;
+}
+
+.main-content__span{
+    text-decoration: underline;
+}
 
 .main__actions{
-    margin-top: 5rem;
+    margin-top: 3rem;
     text-align: center;
 }
 
@@ -39,16 +47,19 @@
     border-radius: 10px;
     border: 1px solid #ff9800;
     color: #222;
+    display: inline-block;
     font-size: .9rem;
     font-weight: 700;
     padding: .25rem .75rem;
     text-decoration: none;
-    transition: background-color .5s, color .4s;
+    transition: background-color .5s, color .4s, transform .4s;
 }
 
 .main__action:hover{
     background-color: #ff9800;
+    box-shadow: 0 0 5px 0 rgba(80, 80, 80, 0.6);
     color: #fff;
+    transform: scale(1.2);
 }
 
 /*********************** End main styling ***********************/
