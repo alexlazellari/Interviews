@@ -1,5 +1,10 @@
 /*********************** Basic css rules ***********************/
 
+@font-face {
+    font-family: Dancing_Script;
+    src: url("../fonts/Dancing_Script/DancingScript-VariableFont_wght.ttf");
+}
+
 * {
     box-sizing: border-box;
     margin: 0;
@@ -27,6 +32,8 @@ body {
 }
 
 .nav__logo{
+    color: #ff9800;
+    font-family: Dancing_Script;
     font-size: 1.25rem;
     font-weight: 600;
     letter-spacing: 2px;
@@ -59,31 +66,10 @@ body {
 
 
 
-/*********************** Main styling ***********************/
-
-.main{
-    height: calc(100vh - 4.5rem);
-    margin: 0 auto;
-    margin-top: 3rem;
-    max-width: 1120px;
-    width: 90%;
-}
-
-.main__title{
-    text-align: center;
-}
-
-.bored{
-    color: #ff9800;
-}
-
-/*********************** End main styling ***********************/
-
-
-
 /*********************** Footer styling ***********************/
 
 .footer{
+    /* background: linear-gradient(#fff,#eee); */
     padding: 1rem 0;
 }
 
@@ -107,4 +93,3 @@ body {
 }
 
 /*********************** End media queries ***********************/
-

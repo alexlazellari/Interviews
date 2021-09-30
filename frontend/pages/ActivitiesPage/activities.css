@@ -1,0 +1,22 @@
+/*********************** Activities styling ***********************/
+
+.activities{
+    height: calc(100vh - 4.5rem);
+    margin: 0 auto;
+    margin-top: 3rem;
+    max-width: 1120px;
+    width: 90%;
+}
+
+.activities__table{
+    width: 100%;
+    border-collapse: collapse;
+    border: 1px solid #222;
+    color:#222;
+}
+
+th{
+    text-align: start;
+}
+
+/*********************** End activities styling ***********************/
