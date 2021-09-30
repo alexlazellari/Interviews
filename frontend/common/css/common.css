@@ -73,11 +73,9 @@ body {
     color: #333;
     display: inline-block;
     margin: 0 .25rem;
-    padding: .75rem;
+    padding: .5rem;
     text-decoration: none;
     transition: .4s background-color;
-
-
 }
 
 .active{
@@ -115,6 +113,10 @@ body {
 
     .nav{
         max-width: 1120px;
+    }
+
+    .nav__link{
+        padding: .75rem;
     }
 
 }

@@ -1,0 +1,83 @@
+/*********************** Main styling ***********************/
+
+.main{
+    min-height: calc(100vh - 4.5rem);
+    margin: 0 auto;
+    margin-top: 3rem;
+    max-width: 1120px;
+    padding-bottom: 3rem;
+    min-width: 260px;
+    width: 90%;
+}
+
+.main__header{
+    margin-bottom: 2rem;
+}
+
+.main__title{
+    color: #D37506;
+    margin-bottom: 2rem;
+    text-align: center;
+}
+
+.guidelines{
+    margin-top: .75rem;
+}
+
+.guideline{
+    margin-left: 2rem;
+    margin-bottom: .5rem;
+}
+
+/*********************** End main styling ***********************/
+
+
+
+/*********************** Form styling ***********************/
+
+.form__fieldset{
+    padding: 1rem;
+}
+
+.form__actions{
+    margin-top: 1.5rem;
+    text-align: center;
+    z-index: 0;
+}
+
+.btn{
+    background-color: transparent;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: 600;
+    letter-spacing: 1px;
+    overflow: hidden;
+    padding: .25rem 2rem;
+    position: relative;
+    transition: color .5s;
+}
+
+.btn:hover::before{
+    transform: translate(-50%,-50%);
+}
+
+.btn:hover{
+    color: #fff;
+}
+
+.btn::before{
+    background-color: #ff9800;
+    content: "";
+    height: 100%;
+    top:50%;
+    left: 50%;
+    position: absolute;
+    transform: translate(-150%,75%) rotate(-90deg);
+    transition: transform .5s;
+    width: 100%;
+    z-index: -1;
+}
+
+/*********************** End form styling ***********************/
+
