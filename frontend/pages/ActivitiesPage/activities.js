@@ -60,26 +60,3 @@ function addActivity(data) {
 
   tableBodyDOM.appendChild(tableRow);
 }
-
-//This is a test
-// (function suggestion() {
-//   let data = {
-//     activity: "create a website",
-//     type: "education",
-//     participants: 3,
-//   };
-//   console.log(JSON.stringify(data));
-//   fetch("https://www.boredapi.com/api/suggestion", {
-//     headers: {
-//       Accept: "application/json",
-//       "Content-Type": "application/json",
-//     },
-//     method: "POST",
-//     body: JSON.stringify(data),
-//   })
-//     .then((response) => {
-//       console.log(response);
-//       return response.json();
-//     })
-//     .then((data) => console.log(data));
-// })();

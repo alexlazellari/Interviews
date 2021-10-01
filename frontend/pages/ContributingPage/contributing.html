@@ -22,6 +22,7 @@
     <link rel="stylesheet" href="../../common/css/common.css">
     <!-- JavaScript -->
     <script src="../../common/javascript/common.js" defer></script>
+    <script src="../../pages/ContributingPage/contributing.js" defer></script>
     <!-- Font awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css" />
 </head>
@@ -74,12 +75,12 @@
                 <legend class="form__legend">Contributing Form</legend>
                 <div class="input-group">
                     <label for="activity">*Activity: </label><br>
-                    <input type="text" id="activity" placeholder="Watch a classic movie" class="input-group__input" required>
+                    <input type="text" id="activity" placeholder="Watch a classic movie" value="" class="input-group__input" minlength="3" maxlength="64" required>
                     <!-- <span class="input-group__help"></span> -->
                 </div>
                 <div class="form__select">
                     <label for="select">*Type: </label><br>
-                    <select id="select" required>
+                    <select name="type" id="select" required>
                         <option value="education">Education</option>
                         <option value="recreational" selected>Recreational</option>
                         <option value="social">Social</option>
@@ -93,7 +94,7 @@
                 </div>
                 <div class="input-group">
                     <label for="participants">*Participants: </label><br>
-                    <input type="text" id="participants" placeholder="2" class="input-group__input" required>
+                    <input type="number" id="participants" placeholder="2" value="" min="0" max="1000" class="input-group__input" required>
                     <!-- <span class="input-group__help"></span> -->
                 </div>
 
@@ -111,6 +112,9 @@
                 </details>
             </div>
         </form>
+        <div class="alert-message">
+            <p class="response-message"></p>
+        </div>
     </main>
 
     <!-- Footer -->

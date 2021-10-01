@@ -119,5 +119,31 @@
     z-index: -1;
 }
 
+.form__summary{
+    cursor: pointer;
+}
+
 /*********************** End form styling ***********************/
+
+
+
+/*********************** Alert-Message styling ***********************/
+
+.alert-message{
+    margin-top: 4rem;
+}
+
+.response-message{
+    text-align: center;
+}
+
+.response-message--success{
+    color: #04AA6D;
+}
+
+.response-message--info{
+    color: #2196F3;
+}
+
+/*********************** End Alert-Message styling ***********************/
 
