@@ -72,17 +72,16 @@
         <form class="form">
             <fieldset class="form__fieldset">
                 <legend class="form__legend">Contributing Form</legend>
-            
                 <div class="input-group">
-                    <label for="activity">Activity: </label>
-                    <input type="text" id="activity" class="input-group__input">
+                    <label for="activity">*Activity: </label><br>
+                    <input type="text" id="activity" placeholder="Watch a classic movie" class="input-group__input" required>
                     <!-- <span class="input-group__help"></span> -->
                 </div>
                 <div class="form__select">
-                    <label for="select">Type: </label>
-                    <select id="select">
+                    <label for="select">*Type: </label><br>
+                    <select id="select" required>
                         <option value="education">Education</option>
-                        <option value="recreational">Recreational</option>
+                        <option value="recreational" selected>Recreational</option>
                         <option value="social">Social</option>
                         <option value="diy">DIY</option>
                         <option value="charity">Charity</option>
@@ -93,8 +92,8 @@
                     </select>
                 </div>
                 <div class="input-group">
-                    <label for="participants">Participants: </label>
-                    <input type="text" id="participants" class="input-group__input">
+                    <label for="participants">*Participants: </label><br>
+                    <input type="text" id="participants" placeholder="2" class="input-group__input" required>
                     <!-- <span class="input-group__help"></span> -->
                 </div>
 
@@ -103,6 +102,14 @@
                 </div>
 
             </fieldset>
+            <div class="form__row">
+                <details class="form__details">
+                    <summary class="form__summary">
+                        (*) Required Field 
+                    </summary>
+                    <p>Fields with the star symbol are required.</p>
+                </details>
+            </div>
         </form>
     </main>
 
