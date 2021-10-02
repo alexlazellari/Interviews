@@ -1,20 +1,7 @@
-/*********************** Main styling ***********************/
 
-.main{
-    min-height: calc(100vh - 4.5rem);
-    margin: 0 auto;
-    margin-top: 3rem;
-    max-width: 1120px;
-    padding-bottom: 3rem;
-    min-width: 260px;
-    width: 90%;
-}
+/*********************** Home  styling ***********************/
 
-.main__title{
-    text-align: center;
-}
-
-.main__picture{
+.home__picture{
     display: inline-block;
     margin-top: 2rem;
     text-align: center;
@@ -25,25 +12,25 @@
     color: #ff9800;
 }
 
-.main__section{
+.home__section{
     margin-top: 4rem;
 }
 
-.main__content{
+.home__content{
     letter-spacing: 1px;
     line-height: 1.5rem;
 }
 
-.main-content__span{
+.home-content__span{
     text-decoration: underline;
 }
 
-.main__actions{
+.home__actions{
     margin-top: 3rem;
     text-align: center;
 }
 
-.main__action{
+.home__action{
     border-radius: 10px;
     border: 1px solid #ff9800;
     color: #222;
@@ -55,12 +42,11 @@
     transition: background-color .5s, color .4s, transform .4s;
 }
 
-.main__action:hover{
+.home__action:hover{
     background-color: #ff9800;
     box-shadow: 0 0 5px 0 rgba(80, 80, 80, 0.6);
     color: #fff;
     transform: scale(1.2);
 }
 
-/*********************** End main styling ***********************/
-
+/*********************** End home  styling ***********************/
