@@ -1,4 +1,4 @@
-/*********************** Activities styling ***********************/
+/*********************** Activities Form styling ***********************/
 
 .activities{
     border-collapse: collapse;
@@ -15,45 +15,11 @@
 .activities__header{
     background-color: rgba(255, 152, 0, 0.8);
     color: #fff;
+    letter-spacing: 1px;
     padding: .25rem;
     text-align: start;
 }
 
-.activities__row{
-    background-color: rgba(200, 200, 200, 0.1);
-    border-radius: 0 0 7px 7px;
-    transition: transform .6s, background-color .3s, box-shadow 0.5s;
-}
-
-.activities__row:hover{
-    box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.4);
-    cursor: pointer;
-    transform: scale(1.05);
-    background-color: #fff;
-}
-
-.activities__row:nth-of-type(2n+1){
-    background-color: rgba(255, 152, 0, 0.4);
-}
-
-.activities__row:nth-of-type(2n+1):hover{
-    background-color: rgba(255, 152, 0, 0.8);
-}
-
-.activities__row:last-of-type .activities__datacell:nth-of-type(1){
-    border-radius: 0 0 0 7px;
-}
-
-.activities__row:last-of-type .activities__datacell:nth-of-type(3){
-    border-radius: 0 0 7px 0;
-}
-
-.activities__datacell{
-    /* border: 1px solid #ff9800; */
-    font-weight: 600;
-    letter-spacing: 1px;
-    padding:  .25rem;
-}
 
 .main__actions{
     text-align: center;
@@ -80,7 +46,8 @@
     outline: none;
 }
 
-/*********************** End activities styling ***********************/
+/*********************** End activities Form styling ***********************/
+
 
 
 /*********************** Media queries ***********************/
@@ -88,10 +55,6 @@
 @media screen and ( min-width: 520px) {
 
     .activities__header{
-        padding: .75rem 1rem;
-    }
-
-    .activities__datacell{
         padding: .75rem 1rem;
     }
 

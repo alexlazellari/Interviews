@@ -116,6 +116,7 @@ body {
 }
 
 .main__subtitle{
+  font-weight: 700;
   letter-spacing: 1px;
   text-align: center;
 }

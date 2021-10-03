@@ -62,9 +62,9 @@ const Contributing = () => {
   };
 
   return (
-    <main className="main">
+    <main className="contributing main">
       <header className="main__header">
-        <h2 className="main__title">
+        <h2 className="main__title contributing__title">
           Help other people to motivate with your ideas.
         </h2>
         <p className="main__subtitle"></p>
@@ -89,7 +89,7 @@ const Contributing = () => {
             <input
               type="text"
               id="activity"
-              placeholder="Watch a classNameic movie"
+              placeholder="Watch a classic movie"
               value={activity}
               onChange={(e) => {
                 setActivity(e.target.value);

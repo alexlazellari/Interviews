@@ -4,9 +4,8 @@ import Header from "./components/Header/Header";
 import Home from "./containers/Home/Home";
 import Activities from "./containers/Activities/Activities";
 import Contributing from "./containers/Contributing/Contributing";
+import Error from "./containers/Error/Error";
 import Footer from "./components/Footer/Footer";
-
-import "./App.css";
 
 function App() {
   return (
@@ -21,6 +20,9 @@ function App() {
         </Route>
         <Route path="/contributing">
           <Contributing />
+        </Route>
+        <Route path="*">
+          <Error />
         </Route>
       </Switch>
       <Footer />
