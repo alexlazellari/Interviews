@@ -1,8 +1,69 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import Tips from "../../components/Tips/Tips";
 import "./Activities.css";
 
-const activities = () => {
+const Activities = () => {
+  const [activities, setActivities] = useState([]);
+
+  useEffect(() => {
+    let flag = false;
+    const fetchThree = async () => {
+      for (let i = 0; i <= 2; i++) {
+        try {
+          const response = await fetch(
+            "https://www.boredapi.com/api/activity",
+            {
+              method: "GET",
+              headers: {
+                accept: "application/json",
+              },
+            }
+          );
+          const data = await response.json();
+          const { key, activity, type, participants } = data;
+          if (!flag) {
+            setActivities((state) => {
+              return [...state, { key, activity, type, participants }];
+            });
+          }
+        } catch (err) {
+          console.error(err);
+        }
+      }
+    };
+    fetchThree();
+    return () => {
+      flag = true;
+    };
+  }, []);
+
+  const addActivity = () => {
+    fetch("https://www.boredapi.com/api/activity", {
+      method: "GET",
+      headers: {
+        accept: "application/json",
+      },
+    })
+      .then((response) => {
+        if (!response.ok) {
+          return;
+        }
+        return response.json();
+      })
+      .then((data) => {
+        if (!data) {
+          throw new Error(data);
+        }
+        const { key, activity, type, participants } = data;
+        setActivities((state) => {
+          return [...state, { key, activity, type, participants }];
+        });
+      })
+      .catch((err) => {
+        console.error(err);
+      });
+  };
+
   return (
     <main className="main">
       <header className="main__header">
@@ -24,16 +85,32 @@ const activities = () => {
       <section className="main__section">
         <table className="activities">
           <thead className="activities__head">
-            <th className="activities__header">Activity</th>
-            <th className="activities__header">Type</th>
-            <th className="activities__header">Participants</th>
+            <tr>
+              <th className="activities__header">Activity</th>
+              <th className="activities__header">Type</th>
+              <th className="activities__header">Participants</th>
+            </tr>
           </thead>
-          <tbody className="activities__body"></tbody>
+          <tbody className="activities__body">
+            {activities.map(({ key, activity, type, participants }) => {
+              return (
+                <tr key={key} className="activities__row">
+                  <td className="activities__datacell">{activity}</td>
+                  <td className="activities__datacell">{type}</td>
+                  <td className="activities__datacell">{participants}</td>
+                </tr>
+              );
+            })}
+          </tbody>
         </table>
       </section>
 
       <div className="main__actions">
-        <button type="button" className="main__action btn">
+        <button
+          className="main__action btn"
+          type="button"
+          onClick={addActivity}
+        >
           GET NEXT ACTIVITY
         </button>
       </div>
@@ -41,4 +118,4 @@ const activities = () => {
   );
 };
 
-export default activities;
+export default Activities;

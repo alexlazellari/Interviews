@@ -1,8 +1,8 @@
 import React from "react";
 
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 
-const header = () => {
+const header = ({ activePage }) => {
   return (
     <header className="header">
       <nav className="nav">
@@ -12,19 +12,35 @@ const header = () => {
 
         <ul className="nav__list">
           <li className="nav__item">
-            <Link to="/" className="nav__link" title="Home">
+            <NavLink
+              to="/"
+              activeClassName="active__link"
+              className="nav__link"
+              title="Home"
+              exact
+            >
               <i className="fas fa-home"></i>
-            </Link>
+            </NavLink>
           </li>
           <li className="nav__item">
-            <Link to="/activities" className="nav__link" title="Activities">
+            <NavLink
+              to="/activities"
+              activeClassName="active__link"
+              className="nav__link"
+              title="Activities"
+            >
               <i className="fas fa-puzzle-piece"></i>
-            </Link>
+            </NavLink>
           </li>
           <li className="nav__item">
-            <Link to="/contributing" className="nav__link" title="Contribute">
+            <NavLink
+              to="/contributing"
+              activeClassName="active__link"
+              className="nav__link"
+              title="Contribute"
+            >
               <i className="fas fa-plus-square"></i>
-            </Link>
+            </NavLink>
           </li>
         </ul>
       </nav>

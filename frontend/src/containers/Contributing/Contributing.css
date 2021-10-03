@@ -49,6 +49,8 @@
 
 .form__select{
     margin-bottom: 1rem;
+    text-transform: capitalize;
+
 }
 
 #select{
