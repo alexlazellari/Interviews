@@ -15,11 +15,16 @@ interface Props {
 export function Task({ task, onDelete, onEdit }: Props) {
   return (
     <ListItem
+      sx={{
+        border: "1px solid lightgrey",
+        borderRadius: "5px",
+        mb: 1,
+      }}
       secondaryAction={
         <Box>
           <IconButton
             sx={{
-              mr: 0.5,
+              mr: 0.125,
             }}
             edge="end"
             aria-label="edit"
@@ -44,6 +49,7 @@ export function Task({ task, onDelete, onEdit }: Props) {
           sx: {
             fontSize: "1rem",
             fontWeight: "bold",
+            mr: 2,
           },
         }}
         primary={task.title}

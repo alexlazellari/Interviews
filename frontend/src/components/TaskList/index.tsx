@@ -126,7 +126,7 @@ export function TaskList() {
           <AddIcon />
         </Button>
       </Paper>
-      <List dense>
+      <List>
         {taskList.map((task) => {
           return (
             <TaskComponent

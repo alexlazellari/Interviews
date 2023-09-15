@@ -5,10 +5,8 @@ import Toolbar from "@mui/material/Toolbar";
 function Landing() {
   return (
     <Box>
-      <Box>
-        <Toolbar />
-        <TaskList />
-      </Box>
+      <Toolbar />
+      <TaskList />
     </Box>
   );
 }
