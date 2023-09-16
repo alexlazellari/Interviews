@@ -17,18 +17,6 @@ import styled from "styled-components";
 import { styled as muiStyled } from "@mui/material/styles";
 import MenuIcon from "@mui/icons-material/Menu";
 
-const StyledLink = styled(Link)`
-  width: 100%;
-  border-radius: 5px;
-  padding: 0.5rem 0.875rem;
-  &:hover {
-    background-color: rgba(206, 212, 218, 0.2);
-  }
-  @media (max-width: 600px) {
-    color: rgb(52, 71, 103);
-  }
-`;
-
 const StyledLogo = styled(Link)`
   margin-right: 2rem;
   display: none;
@@ -36,7 +24,7 @@ const StyledLogo = styled(Link)`
   font-weight: 700;
   letter-spacing: 0.3rem;
   color: inherit;
-  font-size: 1.25rem;
+  font-size: 1.125rem;
   text-decoration: none;
   @media (min-width: 600px) {
     display: flex;
@@ -81,8 +69,15 @@ export default function DrawerAppBar(props: Props) {
 
   const drawer = (
     <Box onClick={handleDrawerToggle} sx={{ textAlign: "center" }}>
-      <Typography sx={{ p: 2, fontFamily: "monospace", fontWeight: 700 }}>
-        Chemify
+      <Typography
+        sx={{
+          p: 2,
+          fontFamily: "monospace",
+          fontWeight: 700,
+          fontSize: "1.125rem",
+        }}
+      >
+        ✨Chemify
       </Typography>
       <Divider />
 
@@ -112,7 +107,7 @@ export default function DrawerAppBar(props: Props) {
           >
             <MenuIcon />
           </IconButton>
-          <StyledLogo to="/">Chemify</StyledLogo>
+          <StyledLogo to="/">✨Chemify</StyledLogo>
           <Box sx={{ display: { xs: "none", sm: "block" }, flexGrow: 1 }}></Box>
           <Box sx={{ display: { xs: "none", sm: "block" } }}>
             {navItems.map((item) => (

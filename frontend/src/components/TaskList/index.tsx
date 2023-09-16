@@ -91,6 +91,25 @@ export function TaskList() {
 
     setTaskList(updatedTasks);
   };
+
+  const handleDoneCheckbox = async (task: Task) => {
+    await updateTask(task.id, {
+      done: !task.done,
+    });
+
+    const updatedTasks = taskList.map((currentTask) => {
+      if (currentTask.id === task.id) {
+        return {
+          ...currentTask,
+          done: !task.done,
+        };
+      }
+      return currentTask;
+    });
+
+    setTaskList(updatedTasks);
+  };
+
   return (
     <Box
       sx={{
@@ -134,6 +153,7 @@ export function TaskList() {
               task={task}
               onDelete={handleDeleteTask}
               onEdit={handleEditAction}
+              onDone={handleDoneCheckbox}
             />
           );
         })}
