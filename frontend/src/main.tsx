@@ -1,10 +1,43 @@
+import { ThemeProvider } from '@emotion/react';
+import '@fontsource/roboto/300.css';
+import '@fontsource/roboto/400.css';
+import '@fontsource/roboto/500.css';
+import '@fontsource/roboto/700.css';
+import { createTheme, CssBaseline } from '@mui/material';
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import App from './App.tsx';
-import './index.css';
+import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+import Root, { loader as rootLoader } from './routes/root';
+import ErrorView from './views/Error';
+import Landing from './views/Landing';
+
+const router = createBrowserRouter([
+    {
+        path: '/',
+        element: <Root />,
+        errorElement: <ErrorView />,
+        loader: rootLoader,
+        children: [
+            {
+                path: '/landing',
+                element: <Landing />,
+            },
+        ],
+    },
+]);
+
+const theme = createTheme({
+    palette: {
+        mode: 'dark',
+        contrastThreshold: 4.5,
+    },
+});
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
     <React.StrictMode>
-        <App />
+        <ThemeProvider theme={theme}>
+            <CssBaseline enableColorScheme />
+            <RouterProvider router={router} />
+        </ThemeProvider>
     </React.StrictMode>
 );
