@@ -5,28 +5,27 @@ import {
     Typography,
     Divider,
     List,
-    ListItem,
     AppBar,
     IconButton,
     Drawer,
     Toolbar,
     AppBarProps,
+    Chip,
+    Button,
 } from '@mui/material';
 import styled from 'styled-components';
 import { Menu } from '@mui/icons-material';
 
 const StyledLink = styled(Link)`
-    color: rgba(0, 0, 0, 0.87);
     width: 100%;
     border-radius: 5px;
     padding: 0.5rem 0.875rem;
-    // Add a media query to target mobile screens
-    @media (max-width: 600px) {
-        color: rgb(52, 71, 103);
-    }
 `;
 
 const StyledLogo = styled(Link)`
+    border-radius: 5px;
+    border: 1px solid #1565c0;
+    padding: 0.25rem 0.5rem;
     margin-right: 2rem;
     display: none;
     font-family: monospace;
@@ -44,7 +43,6 @@ const StyledAppBar = styled(AppBar)<AppBarProps>(() => ({
         boxShadow: 'none',
         backdropFilter: 'saturate(200%) blur(1.875rem)',
         backgroundColor: 'transparent',
-        color: 'rgb(52, 71, 103)',
     },
 }));
 
@@ -53,7 +51,7 @@ interface Props {
 }
 
 const drawerWidth = 240;
-const navItems = ['Features', 'Pricing'];
+// const navItems = ['Features', 'Pricing'];
 
 export default function DrawerAppBar(props: Props) {
     const { window } = props;
@@ -70,11 +68,11 @@ export default function DrawerAppBar(props: Props) {
             </Typography>
             <Divider />
             <List>
-                {navItems.map((item) => (
+                {/* {navItems.map((item) => (
                     <ListItem key={item} disablePadding>
                         <StyledLink to={item}>{item}</StyledLink>
                     </ListItem>
-                ))}
+                ))} */}
             </List>
         </Box>
     );
@@ -83,9 +81,11 @@ export default function DrawerAppBar(props: Props) {
         window !== undefined ? () => window().document.body : undefined;
 
     return (
-        <Box sx={{ display: 'flex' }}>
+        <Box>
             <StyledAppBar>
-                <Toolbar>
+                <Toolbar
+                    sx={{ width: '100%', maxWidth: '1444px', margin: 'auto' }}
+                >
                     <IconButton
                         color="inherit"
                         aria-label="open drawer"
@@ -95,18 +95,42 @@ export default function DrawerAppBar(props: Props) {
                     >
                         <Menu />
                     </IconButton>
-                    <StyledLogo to="/">SnackNews</StyledLogo>
+                    <Button
+                        component={Link}
+                        to="/"
+                        sx={{
+                            color: 'text.primary',
+                            fontWeight: 'bold',
+                        }}
+                        disableRipple
+                        disableElevation
+                    >
+                        <i>Snack</i>
+                        <Box
+                            component="span"
+                            sx={{
+                                backgroundColor: 'primary.main',
+                                color: 'primary.contrastText',
+                                p: 0.25,
+                                px: 1,
+                                borderRadius: '5px',
+                                ml: 0.75,
+                            }}
+                        >
+                            News
+                        </Box>
+                    </Button>
                     <Box
                         sx={{
                             display: { xs: 'none', sm: 'block' },
                             flexGrow: 1,
                         }}
                     >
-                        {navItems.map((item) => (
+                        {/* {navItems.map((item) => (
                             <StyledLink key={item} to={item}>
                                 {item}
                             </StyledLink>
-                        ))}
+                        ))} */}
                     </Box>
                 </Toolbar>
             </StyledAppBar>

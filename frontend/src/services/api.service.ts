@@ -1,8 +1,4 @@
-import axios, {
-    AxiosResponse,
-    AxiosRequestConfig,
-    RawAxiosRequestHeaders,
-} from 'axios';
+import axios, { AxiosResponse, AxiosRequestConfig } from 'axios';
 import { Article } from '../types/article.type';
 
 const serverUrl = import.meta.env.VITE_SERVER_URL;
@@ -11,22 +7,36 @@ const client = axios.create({
     baseURL: serverUrl,
 });
 
-/**
- * Fetches articles based on a search query.
- * @param {string} query - The query to search for articles.
- * @returns {Promise<Article[]> | null} - A promise that resolves to an array of articles or null if an error occurs.
- */
-export async function fetchArticles(query: string): Promise<Article[] | null> {
+// Define the ArticleQuery type if not already defined
+export type ArticleQuery = {
+    query?: string;
+    from?: string;
+    to?: string;
+    sortBy?: string;
+};
+
+// Fetch articles from the server
+export async function fetchArticles(
+    articleQuery: ArticleQuery
+): Promise<Article[] | null> {
+    const params = new URLSearchParams();
+
+    // Add query parameters only if they exist
+    if (articleQuery.query) params.append('query', articleQuery.query);
+    if (articleQuery.from) params.append('from', articleQuery.from);
+    if (articleQuery.to) params.append('to', articleQuery.to);
+    if (articleQuery.sortBy) params.append('sort', articleQuery.sortBy);
+
     const config: AxiosRequestConfig = {
         headers: {
             Accept: 'application/json',
-        } as RawAxiosRequestHeaders,
+        },
+        params: params,
     };
-    const queryString: string = `query=${encodeURIComponent(query)}`;
 
     try {
         const response: AxiosResponse<{ data: Article[] }> = await client.get(
-            `/articles?${queryString}`,
+            `/articles`,
             config
         );
 

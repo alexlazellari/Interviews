@@ -8,15 +8,14 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import Root, { loader as rootLoader } from './routes/root';
-import ErrorView from './views/Error';
 import Landing from './views/Landing';
+import NotFound from './views/Error';
 
 const router = createBrowserRouter([
     {
         path: '/',
         element: <Root />,
-        errorElement: <ErrorView />,
-        loader: rootLoader,
+        errorElement: <NotFound />,
         children: [
             {
                 path: '/landing',
@@ -28,7 +27,7 @@ const router = createBrowserRouter([
 
 const theme = createTheme({
     palette: {
-        mode: 'dark',
+        mode: 'light',
         contrastThreshold: 4.5,
     },
 });

@@ -1,15 +1,48 @@
-import { useRouteError } from 'react-router-dom';
+import {
+    Box,
+    Button,
+    Card,
+    CardActions,
+    CardHeader,
+    Grid,
+} from '@mui/material';
+import { Link, useRouteError } from 'react-router-dom';
 
-export default function ErrorView() {
+function NotFound() {
     const error = useRouteError();
-
     return (
-        <div id="error-page">
-            <h1>Oops!</h1>
-            <p>Sorry, an unexpected error has occurred.</p>
-            <p>
-                <i>{error.statusText || error.message}</i>
-            </p>
-        </div>
+        <Grid
+            container
+            sx={{
+                justifyContent: 'center',
+                alignItems: 'center',
+                height: 'calc(100vh - 128px)',
+            }}
+        >
+            <Grid item>
+                <Box sx={{ textAlign: 'center' }}>
+                    <Box sx={{ maxWidth: 500, margin: 'auto' }}>
+                        <img src="../../../404.svg" alt="404" />
+                    </Box>
+                </Box>
+                <Card>
+                    <p>
+                        <i>{error.statusText || error.message}</i>
+                    </p>
+                    <CardHeader
+                        title="The page you were looking for doesn't exist."
+                        subheader="You may have mistyped the address or the page may have moved."
+                        sx={{ textAlign: 'center' }}
+                    />
+                    <CardActions sx={{ justifyContent: 'center', mb: 1 }}>
+                        <Button variant="outlined" component={Link} to={'/'}>
+                            Go to Home
+                        </Button>
+                    </CardActions>
+                </Card>
+            </Grid>
+        </Grid>
     );
 }
+
+export default NotFound;
