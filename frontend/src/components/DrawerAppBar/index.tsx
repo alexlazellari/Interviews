@@ -10,8 +10,8 @@ import {
     Drawer,
     Toolbar,
     AppBarProps,
-    Chip,
     Button,
+    ListItem,
 } from '@mui/material';
 import styled from 'styled-components';
 import { Menu } from '@mui/icons-material';
@@ -20,22 +20,6 @@ const StyledLink = styled(Link)`
     width: 100%;
     border-radius: 5px;
     padding: 0.5rem 0.875rem;
-`;
-
-const StyledLogo = styled(Link)`
-    border-radius: 5px;
-    border: 1px solid #1565c0;
-    padding: 0.25rem 0.5rem;
-    margin-right: 2rem;
-    display: none;
-    font-family: monospace;
-    font-weight: 700;
-    color: inherit;
-    font-size: 1.25rem;
-    text-decoration: none;
-    @media (min-width: 600px) {
-        display: flex;
-    }
 `;
 
 const StyledAppBar = styled(AppBar)<AppBarProps>(() => ({
@@ -52,7 +36,7 @@ interface Props {
 }
 
 const drawerWidth = 240;
-// const navItems = ['Features', 'Pricing'];
+const navItems = ['Pricing'];
 
 export default function DrawerAppBar(props: Props) {
     const { window } = props;
@@ -64,16 +48,16 @@ export default function DrawerAppBar(props: Props) {
 
     const drawer = (
         <Box onClick={handleDrawerToggle} sx={{ textAlign: 'center' }}>
-            <Typography variant="h6" sx={{ p: 2 }}>
-                SnackNews
-            </Typography>
+            <Typography sx={{ p: 2 }}>SnackNews</Typography>
             <Divider />
             <List>
-                {/* {navItems.map((item) => (
+                {navItems.map((item) => (
                     <ListItem key={item} disablePadding>
-                        <StyledLink to={item}>{item}</StyledLink>
+                        <Button component={StyledLink} key={item} to={item}>
+                            {item}
+                        </Button>
                     </ListItem>
-                ))} */}
+                ))}
             </List>
         </Box>
     );
@@ -92,7 +76,11 @@ export default function DrawerAppBar(props: Props) {
                         aria-label="open drawer"
                         edge="start"
                         onClick={handleDrawerToggle}
-                        sx={{ mr: 2, display: { sm: 'none' } }}
+                        sx={{
+                            mr: 2,
+                            display: { sm: 'none' },
+                            color: 'primary.main',
+                        }}
                     >
                         <Menu />
                     </IconButton>
@@ -102,8 +90,8 @@ export default function DrawerAppBar(props: Props) {
                         sx={{
                             color: 'text.primary',
                             fontWeight: 'bold',
+                            fontSize: '1.25rem',
                         }}
-                        disableRipple
                         disableElevation
                     >
                         <i>Snack</i>
@@ -123,15 +111,15 @@ export default function DrawerAppBar(props: Props) {
                     </Button>
                     <Box
                         sx={{
-                            display: { xs: 'none', sm: 'block' },
-                            flexGrow: 1,
+                            display: { xs: 'none', sm: 'flex' },
+                            marginLeft: 'auto',
                         }}
                     >
-                        {/* {navItems.map((item) => (
-                            <StyledLink key={item} to={item}>
+                        {navItems.map((item) => (
+                            <Button component={StyledLink} key={item} to={item}>
                                 {item}
-                            </StyledLink>
-                        ))} */}
+                            </Button>
+                        ))}
                     </Box>
                 </Toolbar>
             </StyledAppBar>

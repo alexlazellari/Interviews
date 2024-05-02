@@ -11,6 +11,7 @@ import BasicDatePicker from '../components/BasicDatePicker';
 import dayjs from 'dayjs';
 import SearchIcon from '@mui/icons-material/Search';
 import { Article } from '../types/article.type';
+import Footer from '../components/Footer';
 
 export default function Root() {
     const [searchParams, setSearchParams] = useSearchParams();
@@ -88,6 +89,7 @@ export default function Root() {
                 <Box
                     sx={{
                         display: 'flex',
+                        flexDirection: { xs: 'column', lg: 'row' },
                         gap: 1,
                     }}
                 >
@@ -110,14 +112,18 @@ export default function Root() {
                             }}
                         />
                     </Box>
-                    <Box sx={{ flex: 1 }}>
+                    <Box
+                        sx={{
+                            display: 'flex',
+                            flexDirection: { xs: 'column', sm: 'row' },
+                            gap: 1,
+                        }}
+                    >
                         <BasicDatePicker
                             label="From"
                             value={from}
                             onChange={onFromChange}
                         />
-                    </Box>
-                    <Box sx={{ flex: 1 }}>
                         <BasicDatePicker
                             label="To"
                             value={to}
@@ -126,7 +132,7 @@ export default function Root() {
                         />
                     </Box>
 
-                    <Box sx={{ flex: 1 }}>
+                    <Box>
                         <Select value={sortBy} onChange={onSortByChange} />
                     </Box>
 
@@ -139,14 +145,14 @@ export default function Root() {
                 ) : (
                     <div>
                         <Box sx={{ textAlign: 'center', my: 4 }}>
-                            <Box sx={{ maxWidth: 500, margin: 'auto' }}>
+                            <Box sx={{ maxWidth: 450, margin: 'auto' }}>
                                 {query ? (
                                     <>
                                         <img
                                             src="../../../articles-404.svg"
                                             alt="No articles found"
                                         />
-                                        <Typography fontSize="1.375rem">
+                                        <Typography fontSize="1.25rem">
                                             No articles found for "{query}"
                                         </Typography>
                                     </>
@@ -158,8 +164,8 @@ export default function Root() {
                                             width="100%"
                                             height="auto"
                                         />
-                                        <Typography fontSize="1.375rem">
-                                            Enter search terms to find articles.
+                                        <Typography fontSize="1.25rem">
+                                            Enter search terms to find news.
                                         </Typography>
                                     </>
                                 )}
@@ -168,6 +174,7 @@ export default function Root() {
                     </div>
                 )}
             </Box>
+            <Footer />
         </Box>
     );
 }
