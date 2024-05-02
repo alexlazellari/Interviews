@@ -16,12 +16,7 @@ const router = createBrowserRouter([
         path: '/',
         element: <Root />,
         errorElement: <NotFound />,
-        children: [
-            {
-                path: '/landing',
-                element: <Landing />,
-            },
-        ],
+        children: [],
     },
 ]);
 

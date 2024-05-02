@@ -7,7 +7,6 @@ import Link from '@mui/material/Link';
 import { Article } from '../../types/article.type';
 
 export default function ArticleCard({ article }: { article: Article }) {
-    console.log(article);
     return (
         <Card sx={{ mb: 2 }}>
             {article.urlToImage && (

@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { Form, useSearchParams } from 'react-router-dom';
 import { fetchArticles } from '../services/api.service';
 import Box from '@mui/material/Box';
@@ -9,6 +9,7 @@ import {
     Button,
     CircularProgress,
     InputAdornment,
+    SelectChangeEvent,
     TextField,
     Typography,
 } from '@mui/material';
@@ -53,30 +54,58 @@ export default function Root() {
         setSearchParams(params, { replace: true });
     };
 
-    const onQueryChange = (event) => {
+    const onQueryChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         if (event.target.value === '') {
             setNotFound(false);
         }
-
         setQuery(event.target.value);
-
         updateSearchParams({ query: event.target.value });
     };
 
-    const onFromChange = (newValue) => {
+    const onFromChange = (newValue: dayjs.Dayjs) => {
         setTo(null);
         setFrom(newValue);
         updateSearchParams({ from: newValue ? newValue.format() : '', to: '' });
     };
 
-    const onToChange = (newValue) => {
+    const onToChange = (newValue: dayjs.Dayjs) => {
         setTo(newValue);
         updateSearchParams({ to: newValue ? newValue.format() : '' });
     };
 
-    const onSortByChange = (event) => {
+    const onSortByChange = (event: SelectChangeEvent) => {
         setSortBy(event.target.value);
         updateSearchParams({ sortBy: event.target.value });
+    };
+
+    const onSubmit = async (event) => {
+        event.preventDefault();
+        setIsLoading(true);
+        updateSearchParams({
+            query,
+            from: from?.format('YYYY-MM-DD'),
+            to: to?.format('YYYY-MM-DD'),
+            sortBy,
+        });
+        let articles = await fetchArticles({
+            query,
+            from: from?.format('YYYY-MM-DD'),
+            to: to?.format('YYYY-MM-DD'),
+            sortBy,
+        });
+        if (!articles || articles.length === 0) setNotFound(true);
+        else {
+            setNotFound(false);
+            // Filter out articles where the source name is 'removed'
+            articles = articles.filter(
+                (article) => article.source.name.toLowerCase() !== '[removed]'
+            );
+        }
+
+        setArticles(articles);
+        setTimeout(() => {
+            setIsLoading(false);
+        }, 1000);
     };
 
     return (
@@ -89,31 +118,7 @@ export default function Root() {
                 margin="auto"
             >
                 <Toolbar sx={{ height: '5rem' }} />
-                <Form
-                    onSubmit={async (event) => {
-                        event.preventDefault();
-                        setIsLoading(true);
-                        updateSearchParams({
-                            query,
-                            from: from?.format('YYYY-MM-DD'),
-                            to: to?.format('YYYY-MM-DD'),
-                            sortBy,
-                        });
-                        const articles = await fetchArticles({
-                            query,
-                            from: from?.format('YYYY-MM-DD'),
-                            to: to?.format('YYYY-MM-DD'),
-                            sortBy,
-                        });
-                        if (!articles || articles.length === 0)
-                            setNotFound(true);
-                        else setNotFound(false);
-                        setArticles(articles);
-                        setTimeout(() => {
-                            setIsLoading(false);
-                        }, 1000);
-                    }}
-                >
+                <Form onSubmit={onSubmit}>
                     <Box
                         sx={{
                             display: 'flex',

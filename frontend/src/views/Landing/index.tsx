@@ -6,72 +6,15 @@ function Landing() {
     return (
         <Box>
             <Box>
-                <Box>
-                    <Typography
-                        variant="h2"
-                        sx={{
-                            mb: 2,
-                            textAlign: 'center',
-                            fontSize: {
-                                xs: '1.25rem',
-                                sm: '1.5rem',
-                                md: '2rem',
-                                lg: '2.75rem',
-                            },
-                            fontWeight: {
-                                xs: 'bold',
-                                sm: 'normal',
-                            },
-                        }}
-                    >
-                        Features Designed to Simplify Your Life
-                    </Typography>
-                    <Divider sx={{ m: 2 }} />
-                    <Typography
-                        sx={{
-                            textAlign: 'center',
-                            fontSize: {
-                                xs: '.75rem',
-                                sm: '1rem',
-                            },
-                        }}
-                    >
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                    </Typography>
-                </Box>
-            </Box>
-            <Box id="Pricing" minHeight={'85vh'}>
-                <Typography
-                    variant="h2"
-                    sx={{
-                        mb: 2,
-                        textAlign: 'center',
-                        fontSize: {
-                            xs: '1.25rem',
-                            sm: '1.5rem',
-                            md: '2rem',
-                            lg: '2.75rem',
-                        },
-                        fontWeight: {
-                            xs: 'bold',
-                            sm: 'normal',
-                        },
-                    }}
-                >
-                    Choose Your Plan
+                <Typography variant="h1">Welcome to SnackNews</Typography>
+                <Typography variant="h2">
+                    Your source for the latest news
                 </Typography>
-                <Divider sx={{ m: 2 }} />
-                <Typography
-                    sx={{
-                        mb: 2,
-                        textAlign: 'center',
-                        fontSize: {
-                            xs: '.75rem',
-                            sm: '1rem',
-                        },
-                    }}
-                >
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                <Typography variant="h3">
+                    Get the latest news from around the world
+                </Typography>
+                <Typography>
+                    SUDO SUDO SUDO SUDO SUDO SUDO SUDO SUDO SUDO SUDO SUDO
                 </Typography>
             </Box>
         </Box>
