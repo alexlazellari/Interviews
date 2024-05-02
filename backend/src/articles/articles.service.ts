@@ -18,7 +18,21 @@ export class ArticlesService {
     const endpoint = this.configService.get<string>('NEWS_API_ENDPOINT');
     const { query, from, to, sortBy } = findArticlesDto;
 
-    const url = `${endpoint}/everything?q=${query}&from=${from}&to=${to}&sortBy=${sortBy}&apiKey=${apiKey}`;
+    // Create a new URLSearchParams object
+    const params = new URLSearchParams();
+
+    // Append parameters only if they are defined
+    if (query) params.append('q', query);
+    if (from) params.append('from', from);
+    if (to) params.append('to', to);
+    if (sortBy) params.append('sortBy', sortBy);
+
+    // Always add apiKey and pageSize since these are likely required
+    params.append('apiKey', apiKey);
+    params.append('pageSize', '20');
+
+    // Construct the final URL with the endpoint and the serialized parameters
+    const url = `${endpoint}/everything?${params.toString()}`;
 
     try {
       const response = await firstValueFrom(
@@ -33,11 +47,13 @@ export class ArticlesService {
       const data = response.data.articles;
       const articles: Article[] = data.map((article: Article) => ({
         title: article.title,
-        sourceName: article.source.name,
+        source: {
+          name: article.source.name,
+        },
         description: article.description,
-        imageUrl: article.urlToImage,
+        urlToImage: article.urlToImage,
         publishedAt: article.publishedAt,
-        articleUrl: article.url,
+        url: article.url,
       }));
 
       return articles; // Return the processed list of articles
