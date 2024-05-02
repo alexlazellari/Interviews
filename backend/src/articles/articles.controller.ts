@@ -17,7 +17,7 @@ export class ArticlesController {
       res.status(HttpStatus.OK).json({
         status: 'ok',
         totalResults: articles.length,
-        data: articles,
+        articles: articles,
       });
     } catch (error) {
       res.status(HttpStatus.INTERNAL_SERVER_ERROR).json({
