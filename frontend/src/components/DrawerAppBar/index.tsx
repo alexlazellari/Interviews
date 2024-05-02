@@ -43,6 +43,7 @@ const StyledAppBar = styled(AppBar)<AppBarProps>(() => ({
         boxShadow: 'none',
         backdropFilter: 'saturate(200%) blur(1.875rem)',
         backgroundColor: 'transparent',
+        borderBottom: '1px solid rgba(75, 67, 67, 0.2)',
     },
 }));
 

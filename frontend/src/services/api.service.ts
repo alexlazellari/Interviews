@@ -15,6 +15,12 @@ export type ArticleQuery = {
     sortBy?: string;
 };
 
+export type ArticleResponse = {
+    status: string;
+    totalResults: number;
+    articles: Article[];
+};
+
 // Fetch articles from the server
 export async function fetchArticles(
     articleQuery: ArticleQuery
@@ -35,7 +41,7 @@ export async function fetchArticles(
     };
 
     try {
-        const response: AxiosResponse<{ data: Article[] }> = await client.get(
+        const response: AxiosResponse<ArticleResponse> = await client.get(
             `/articles`,
             config
         );

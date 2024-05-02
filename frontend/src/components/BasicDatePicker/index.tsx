@@ -24,6 +24,7 @@ export default function DatePickerValue({
     return (
         <LocalizationProvider dateAdapter={AdapterDayjs}>
             <DatePicker
+                sx={{ width: '100%' }}
                 label={label}
                 value={value}
                 onChange={onChange}

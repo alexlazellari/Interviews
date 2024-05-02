@@ -5,6 +5,7 @@ import {
     CardActions,
     CardHeader,
     Grid,
+    Typography,
 } from '@mui/material';
 import { Link, useRouteError } from 'react-router-dom';
 
@@ -25,10 +26,10 @@ function NotFound() {
                         <img src="../../../404.svg" alt="404" />
                     </Box>
                 </Box>
+                <Typography>
+                    Error: <i>{error.statusText || error.message}</i>
+                </Typography>
                 <Card>
-                    <p>
-                        <i>{error.statusText || error.message}</i>
-                    </p>
                     <CardHeader
                         title="The page you were looking for doesn't exist."
                         subheader="You may have mistyped the address or the page may have moved."

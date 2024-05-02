@@ -5,10 +5,12 @@ import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
 import DrawerAppBar from '../components/DrawerAppBar';
 import ArticleCardList from '../components/ArticleCardList';
-import { Button, TextField } from '@mui/material';
+import { Button, InputAdornment, TextField, Typography } from '@mui/material';
 import Select from '../components/Select';
 import BasicDatePicker from '../components/BasicDatePicker';
-import dayjs from 'dayjs'; // Assuming you are using dayjs
+import dayjs from 'dayjs';
+import SearchIcon from '@mui/icons-material/Search';
+import { Article } from '../types/article.type';
 
 export default function Root() {
     const [searchParams, setSearchParams] = useSearchParams();
@@ -22,7 +24,8 @@ export default function Root() {
         searchParams.get('sort') || 'publishedAt'
     );
     const [query, setQuery] = useState(searchParams.get('query') || '');
-    const [articles, setArticles] = useState([]);
+    const [articles, setArticles] = useState<Article[]>([]);
+
     const updateSearchParams = (newParams) => {
         // Start with current search parameters
         const params = new URLSearchParams(searchParams);
@@ -54,7 +57,7 @@ export default function Root() {
         loadArticles();
     }, [query, from, to, sortBy]);
 
-    const handleQueryChange = (event) => {
+    const onQueryChange = (event) => {
         setQuery(event.target.value);
         updateSearchParams({ query: event.target.value });
     };
@@ -81,36 +84,88 @@ export default function Root() {
         <Box sx={{ margin: { xs: '1rem' } }}>
             <DrawerAppBar />
             <Box component="main" maxWidth="1280px" margin="auto">
-                <Toolbar />
-                <Box mb={2}>
-                    <Form role="search">
+                <Toolbar sx={{ height: '5rem' }} />
+                <Box
+                    sx={{
+                        display: 'flex',
+                        gap: 1,
+                    }}
+                >
+                    <Box sx={{ flex: 1 }}>
                         <TextField
+                            fullWidth
                             type="text"
                             id="query"
                             name="query"
                             aria-label="Search news articles"
                             placeholder="Search"
                             value={query}
-                            onChange={handleQueryChange}
+                            onChange={onQueryChange}
+                            InputProps={{
+                                startAdornment: (
+                                    <InputAdornment position="start">
+                                        <SearchIcon />
+                                    </InputAdornment>
+                                ),
+                            }}
                         />
+                    </Box>
+                    <Box sx={{ flex: 1 }}>
                         <BasicDatePicker
                             label="From"
                             value={from}
                             onChange={onFromChange}
                         />
+                    </Box>
+                    <Box sx={{ flex: 1 }}>
                         <BasicDatePicker
                             label="To"
                             value={to}
                             onChange={onToChange}
                             minDate={from}
                         />
+                    </Box>
+
+                    <Box sx={{ flex: 1 }}>
                         <Select value={sortBy} onChange={onSortByChange} />
-                    </Form>
+                    </Box>
+
+                    <Button type="submit" variant="contained" disableElevation>
+                        Search
+                    </Button>
                 </Box>
                 {articles && articles.length > 0 ? (
                     <ArticleCardList articles={articles} />
                 ) : (
-                    <p>No articles found</p>
+                    <div>
+                        <Box sx={{ textAlign: 'center', my: 4 }}>
+                            <Box sx={{ maxWidth: 500, margin: 'auto' }}>
+                                {query ? (
+                                    <>
+                                        <img
+                                            src="../../../articles-404.svg"
+                                            alt="No articles found"
+                                        />
+                                        <Typography fontSize="1.375rem">
+                                            No articles found for "{query}"
+                                        </Typography>
+                                    </>
+                                ) : (
+                                    <>
+                                        <img
+                                            src="../../../search-news.jpg"
+                                            alt="Type your query"
+                                            width="100%"
+                                            height="auto"
+                                        />
+                                        <Typography fontSize="1.375rem">
+                                            Enter search terms to find articles.
+                                        </Typography>
+                                    </>
+                                )}
+                            </Box>
+                        </Box>
+                    </div>
                 )}
             </Box>
         </Box>

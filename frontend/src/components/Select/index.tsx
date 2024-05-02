@@ -11,11 +11,10 @@ interface Props {
 
 export default function Select({ value, onChange }: Props) {
     return (
-        <FormControl sx={{ minWidth: 120 }}>
-            <InputLabel id="demo-select-small-label">Sort by</InputLabel>
+        <FormControl fullWidth>
+            <InputLabel id="selectSortBy">Sort by</InputLabel>
             <SelectMUI
-                labelId="demo-select-small-label"
-                id="demo-select-small"
+                labelId="selectSortBy"
                 value={value}
                 label="Sort by"
                 onChange={onChange}
