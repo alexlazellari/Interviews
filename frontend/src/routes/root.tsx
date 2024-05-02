@@ -113,7 +113,7 @@ export default function Root() {
             <DrawerAppBar />
             <Box
                 component="main"
-                sx={{ height: 'calc(100vh)' }}
+                sx={{ minHeight: 'calc(100vh)' }}
                 maxWidth="1280px"
                 margin="auto"
             >
