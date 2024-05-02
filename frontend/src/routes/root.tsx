@@ -5,7 +5,13 @@ import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
 import DrawerAppBar from '../components/DrawerAppBar';
 import ArticleCardList from '../components/ArticleCardList';
-import { Button, InputAdornment, TextField, Typography } from '@mui/material';
+import {
+    Button,
+    CircularProgress,
+    InputAdornment,
+    TextField,
+    Typography,
+} from '@mui/material';
 import Select from '../components/Select';
 import BasicDatePicker from '../components/BasicDatePicker';
 import dayjs from 'dayjs';
@@ -15,6 +21,7 @@ import Footer from '../components/Footer';
 
 export default function Root() {
     const [notFound, setNotFound] = useState(false);
+    const [isLoading, setIsLoading] = useState(false);
     const [searchParams, setSearchParams] = useSearchParams();
     const [from, setFrom] = useState(
         searchParams.get('from') ? dayjs(searchParams.get('from')) : null
@@ -75,11 +82,23 @@ export default function Root() {
     return (
         <Box sx={{ margin: { xs: '1rem' } }}>
             <DrawerAppBar />
-            <Box component="main" maxWidth="1280px" margin="auto">
+            <Box
+                component="main"
+                sx={{ height: 'calc(100vh)' }}
+                maxWidth="1280px"
+                margin="auto"
+            >
                 <Toolbar sx={{ height: '5rem' }} />
                 <Form
                     onSubmit={async (event) => {
                         event.preventDefault();
+                        setIsLoading(true);
+                        updateSearchParams({
+                            query,
+                            from: from?.format('YYYY-MM-DD'),
+                            to: to?.format('YYYY-MM-DD'),
+                            sortBy,
+                        });
                         const articles = await fetchArticles({
                             query,
                             from: from?.format('YYYY-MM-DD'),
@@ -90,6 +109,9 @@ export default function Root() {
                             setNotFound(true);
                         else setNotFound(false);
                         setArticles(articles);
+                        setTimeout(() => {
+                            setIsLoading(false);
+                        }, 1000);
                     }}
                 >
                     <Box
@@ -148,50 +170,62 @@ export default function Root() {
                             value="submit"
                             variant="contained"
                             disableElevation
+                            disabled={isLoading}
                         >
                             Search
                         </Button>
                     </Box>
                 </Form>
-                {articles && articles.length > 0 ? (
-                    <ArticleCardList articles={articles} />
+
+                {isLoading ? (
+                    <div style={{ textAlign: 'center', height: '36.5rem' }}>
+                        <CircularProgress />
+                    </div>
                 ) : (
                     <div>
-                        <Box sx={{ textAlign: 'center', mt: 4, mb: 8 }}>
-                            <Box sx={{ maxWidth: 450, margin: 'auto' }}>
-                                {query && notFound ? (
-                                    <>
-                                        <img
-                                            src="../../../articles-404.svg"
-                                            alt="No articles found"
-                                            style={{
-                                                maxWidth: '450px',
-                                                width: '100%',
-                                                height: 'auto',
-                                            }}
-                                        />
-                                        <Typography fontSize="1.125rem">
-                                            No articles found for "{query}"
-                                        </Typography>
-                                    </>
-                                ) : (
-                                    <>
-                                        <img
-                                            src="../../../search-news.jpg"
-                                            alt="Type your query"
-                                            style={{
-                                                maxWidth: '450px',
-                                                width: '100%',
-                                                height: 'auto',
-                                            }}
-                                        />
-                                        <Typography fontSize="1.125rem">
-                                            Enter search terms to find NEWS!
-                                        </Typography>
-                                    </>
-                                )}
-                            </Box>
-                        </Box>
+                        {articles && articles.length > 0 ? (
+                            <ArticleCardList articles={articles} />
+                        ) : (
+                            <div>
+                                <Box sx={{ textAlign: 'center', mt: 4, mb: 8 }}>
+                                    <Box sx={{ maxWidth: 450, margin: 'auto' }}>
+                                        {query && notFound ? (
+                                            <>
+                                                <img
+                                                    src="../../../articles-404.svg"
+                                                    alt="No articles found"
+                                                    style={{
+                                                        maxWidth: '450px',
+                                                        width: '100%',
+                                                        height: 'auto',
+                                                    }}
+                                                />
+                                                <Typography fontSize="1.125rem">
+                                                    No articles found for "
+                                                    {query}"
+                                                </Typography>
+                                            </>
+                                        ) : (
+                                            <>
+                                                <img
+                                                    src="../../../search-news.jpg"
+                                                    alt="Type your query"
+                                                    style={{
+                                                        maxWidth: '450px',
+                                                        width: '100%',
+                                                        height: 'auto',
+                                                    }}
+                                                />
+                                                <Typography fontSize="1.125rem">
+                                                    Enter search terms to find
+                                                    NEWS!
+                                                </Typography>
+                                            </>
+                                        )}
+                                    </Box>
+                                </Box>
+                            </div>
+                        )}
                     </div>
                 )}
             </Box>
