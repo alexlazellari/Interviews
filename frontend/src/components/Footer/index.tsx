@@ -2,9 +2,11 @@ import { styled } from '@mui/system';
 import { Box, Container, Link, Typography } from '@mui/material';
 
 const StyledFooter = styled(Box)`
-    padding: 0.5rem;
     margin-top: 4rem;
     max-height: 64px;
+    margin: auto;
+    padding-right: 0.5rem;
+    border-top: 1px solid rgba(75, 67, 67, 0.2);
 `;
 
 const CenteredTypography = styled(Typography)`
@@ -14,7 +16,7 @@ const CenteredTypography = styled(Typography)`
 export default function Footer() {
     return (
         <StyledFooter>
-            <Container maxWidth="lg">
+            <Container sx={{ maxWidth: 1444, pt: 2 }} maxWidth={false}>
                 <CenteredTypography
                     variant="body1"
                     sx={{
@@ -24,9 +26,10 @@ export default function Footer() {
                         },
                     }}
                 >
-                    <Link href="/#">Privacy Policy</Link> {' | '}
-                    <Link href="/#">Terms of Service</Link> {' | '}
-                    <Link href="/#">Contact Us</Link>
+                    <Link href="/privacy-policy">Privacy Policy</Link> {' | '}
+                    <Link href="/terms-of-service">Terms of Service</Link>{' '}
+                    {' | '}
+                    <Link href="/contact-us">Contact Us</Link>
                 </CenteredTypography>
                 <CenteredTypography
                     variant="body2"

@@ -7,7 +7,7 @@ import { createTheme, CssBaseline } from '@mui/material';
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
-import Root, { loader as rootLoader } from './routes/root';
+import Root from './routes/root';
 import Landing from './views/Landing';
 import NotFound from './views/Error';
 

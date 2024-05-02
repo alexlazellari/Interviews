@@ -1,7 +1,7 @@
 import React from 'react';
-import Grid from '@mui/material/Grid';
-import { Article } from '../../types/article.type';
+import Masonry from '@mui/lab/Masonry';
 import ArticleCard from '../ArticleCard';
+import { Article } from '../../types/article.type';
 
 interface ArticleCardListProps {
     articles: Article[];
@@ -9,13 +9,15 @@ interface ArticleCardListProps {
 
 const ArticleCardList: React.FC<ArticleCardListProps> = ({ articles }) => {
     return (
-        <Grid container spacing={2}>
+        <Masonry
+            sx={{ m: 0, mb: 4 }}
+            columns={{ xs: 1, sm: 2, md: 3, lg: 4 }}
+            spacing={2}
+        >
             {articles.map((article, index) => (
-                <Grid item xs={12} sm={6} md={4} lg={3} key={index}>
-                    <ArticleCard article={article} />
-                </Grid>
+                <ArticleCard article={article} key={index} />
             ))}
-        </Grid>
+        </Masonry>
     );
 };
 

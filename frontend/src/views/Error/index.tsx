@@ -18,6 +18,7 @@ function NotFound() {
                 justifyContent: 'center',
                 alignItems: 'center',
                 height: 'calc(100vh - 128px)',
+                p: 2,
             }}
         >
             <Grid item>

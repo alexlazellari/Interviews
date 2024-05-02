@@ -18,7 +18,7 @@ export default function DatePickerValue({
 }: Props) {
     // Disable dates before minDate
     const disableBeforeMinDate = (date: Dayjs) => {
-        return date.isBefore(minDate || dayjs());
+        return date.isBefore(minDate);
     };
 
     return (

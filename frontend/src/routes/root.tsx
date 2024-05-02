@@ -14,6 +14,7 @@ import { Article } from '../types/article.type';
 import Footer from '../components/Footer';
 
 export default function Root() {
+    const [notFound, setNotFound] = useState(false);
     const [searchParams, setSearchParams] = useSearchParams();
     const [from, setFrom] = useState(
         searchParams.get('from') ? dayjs(searchParams.get('from')) : null
@@ -22,10 +23,10 @@ export default function Root() {
         searchParams.get('to') ? dayjs(searchParams.get('to')) : null
     );
     const [sortBy, setSortBy] = useState(
-        searchParams.get('sort') || 'publishedAt'
+        searchParams.get('sortBy') || 'publishedAt'
     );
     const [query, setQuery] = useState(searchParams.get('query') || '');
-    const [articles, setArticles] = useState<Article[]>([]);
+    const [articles, setArticles] = useState<Article[] | null>([]);
 
     const updateSearchParams = (newParams) => {
         // Start with current search parameters
@@ -45,40 +46,30 @@ export default function Root() {
         setSearchParams(params, { replace: true });
     };
 
-    useEffect(() => {
-        const loadArticles = async () => {
-            const results = await fetchArticles({
-                query: query,
-                from: from ? from.toISOString() : undefined,
-                to: to ? to.toISOString() : undefined,
-                sortBy: sortBy,
-            });
-            setArticles(results);
-        };
-        loadArticles();
-    }, [query, from, to, sortBy]);
-
     const onQueryChange = (event) => {
+        if (event.target.value === '') {
+            setNotFound(false);
+        }
+
         setQuery(event.target.value);
+
         updateSearchParams({ query: event.target.value });
     };
 
     const onFromChange = (newValue) => {
+        setTo(null);
         setFrom(newValue);
-        updateSearchParams({ from: newValue ? newValue.format() : '' });
+        updateSearchParams({ from: newValue ? newValue.format() : '', to: '' });
     };
 
     const onToChange = (newValue) => {
-        if (from && newValue && newValue.isBefore(from)) {
-            newValue = from;
-        }
         setTo(newValue);
         updateSearchParams({ to: newValue ? newValue.format() : '' });
     };
 
     const onSortByChange = (event) => {
         setSortBy(event.target.value);
-        updateSearchParams({ sort: event.target.value });
+        updateSearchParams({ sortBy: event.target.value });
     };
 
     return (
@@ -86,73 +77,100 @@ export default function Root() {
             <DrawerAppBar />
             <Box component="main" maxWidth="1280px" margin="auto">
                 <Toolbar sx={{ height: '5rem' }} />
-                <Box
-                    sx={{
-                        display: 'flex',
-                        flexDirection: { xs: 'column', lg: 'row' },
-                        gap: 1,
+                <Form
+                    onSubmit={async (event) => {
+                        event.preventDefault();
+                        const articles = await fetchArticles({
+                            query,
+                            from: from?.format('YYYY-MM-DD'),
+                            to: to?.format('YYYY-MM-DD'),
+                            sortBy,
+                        });
+                        if (!articles || articles.length === 0)
+                            setNotFound(true);
+                        else setNotFound(false);
+                        setArticles(articles);
                     }}
                 >
-                    <Box sx={{ flex: 1 }}>
-                        <TextField
-                            fullWidth
-                            type="text"
-                            id="query"
-                            name="query"
-                            aria-label="Search news articles"
-                            placeholder="Search"
-                            value={query}
-                            onChange={onQueryChange}
-                            InputProps={{
-                                startAdornment: (
-                                    <InputAdornment position="start">
-                                        <SearchIcon />
-                                    </InputAdornment>
-                                ),
-                            }}
-                        />
-                    </Box>
                     <Box
                         sx={{
                             display: 'flex',
-                            flexDirection: { xs: 'column', sm: 'row' },
+                            flexDirection: { xs: 'column', lg: 'row' },
                             gap: 1,
+                            mb: 3.5,
                         }}
                     >
-                        <BasicDatePicker
-                            label="From"
-                            value={from}
-                            onChange={onFromChange}
-                        />
-                        <BasicDatePicker
-                            label="To"
-                            value={to}
-                            onChange={onToChange}
-                            minDate={from}
-                        />
-                    </Box>
+                        <Box sx={{ flex: 1 }}>
+                            <TextField
+                                fullWidth
+                                type="text"
+                                id="query"
+                                name="query"
+                                aria-label="Search news articles"
+                                placeholder="Search"
+                                value={query}
+                                onChange={onQueryChange}
+                                InputProps={{
+                                    startAdornment: (
+                                        <InputAdornment position="start">
+                                            <SearchIcon />
+                                        </InputAdornment>
+                                    ),
+                                }}
+                            />
+                        </Box>
+                        <Box
+                            sx={{
+                                display: 'flex',
+                                flexDirection: { xs: 'column', sm: 'row' },
+                                gap: 1,
+                            }}
+                        >
+                            <BasicDatePicker
+                                label="From"
+                                value={from}
+                                onChange={onFromChange}
+                            />
+                            <BasicDatePicker
+                                label="To"
+                                value={to}
+                                onChange={onToChange}
+                                minDate={from}
+                            />
+                        </Box>
 
-                    <Box>
-                        <Select value={sortBy} onChange={onSortByChange} />
-                    </Box>
+                        <Box>
+                            <Select value={sortBy} onChange={onSortByChange} />
+                        </Box>
 
-                    <Button type="submit" variant="contained" disableElevation>
-                        Search
-                    </Button>
-                </Box>
+                        <Button
+                            type="submit"
+                            value="submit"
+                            variant="contained"
+                            disableElevation
+                        >
+                            Search
+                        </Button>
+                    </Box>
+                </Form>
                 {articles && articles.length > 0 ? (
                     <ArticleCardList articles={articles} />
                 ) : (
                     <div>
-                        <Box sx={{ textAlign: 'center', my: 4 }}>
+                        <Box sx={{ textAlign: 'center', mt: 4, mb: 8 }}>
                             <Box sx={{ maxWidth: 450, margin: 'auto' }}>
-                                {query ? (
+                                {query && notFound ? (
                                     <>
                                         <img
                                             src="../../../articles-404.svg"
                                             alt="No articles found"
+                                            style={{
+                                                maxWidth: '450px',
+                                                width: '100%',
+                                                height: 'auto',
+                                            }}
                                         />
-                                        <Typography fontSize="1.25rem">
+                                        <Typography fontSize="1.125rem">
                                             No articles found for "{query}"
                                         </Typography>
                                     </>
@@ -161,11 +179,14 @@ export default function Root() {
                                         <img
                                             src="../../../search-news.jpg"
                                             alt="Type your query"
-                                            width="100%"
-                                            height="auto"
+                                            style={{
+                                                maxWidth: '450px',
+                                                width: '100%',
+                                                height: 'auto',
+                                            }}
                                         />
-                                        <Typography fontSize="1.25rem">
-                                            Enter search terms to find news.
+                                        <Typography fontSize="1.125rem">
+                                            Enter search terms to find NEWS!
                                         </Typography>
                                     </>
                                 )}

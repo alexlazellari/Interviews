@@ -15,6 +15,7 @@ import {
 } from '@mui/material';
 import styled from 'styled-components';
 import { Menu } from '@mui/icons-material';
+import Logo from '../Logo';
 
 const StyledLink = styled(Link)`
     width: 100%;
@@ -48,12 +49,12 @@ export default function DrawerAppBar(props: Props) {
 
     const drawer = (
         <Box onClick={handleDrawerToggle} sx={{ textAlign: 'center' }}>
-            <Typography sx={{ p: 2 }}>SnackNews</Typography>
+            <Logo />
             <Divider />
             <List>
                 {navItems.map((item) => (
                     <ListItem key={item} disablePadding>
-                        <Button component={StyledLink} key={item} to={item}>
+                        <Button component={StyledLink} key={item} to={'#'}>
                             {item}
                         </Button>
                     </ListItem>
@@ -84,31 +85,7 @@ export default function DrawerAppBar(props: Props) {
                     >
                         <Menu />
                     </IconButton>
-                    <Button
-                        component={Link}
-                        to="/"
-                        sx={{
-                            color: 'text.primary',
-                            fontWeight: 'bold',
-                            fontSize: '1.25rem',
-                        }}
-                        disableElevation
-                    >
-                        <i>Snack</i>
-                        <Box
-                            component="span"
-                            sx={{
-                                backgroundColor: 'primary.main',
-                                color: 'primary.contrastText',
-                                p: 0.25,
-                                px: 1,
-                                borderRadius: '5px',
-                                ml: 0.75,
-                            }}
-                        >
-                            News
-                        </Box>
-                    </Button>
+                    <Logo />
                     <Box
                         sx={{
                             display: { xs: 'none', sm: 'flex' },
@@ -116,7 +93,7 @@ export default function DrawerAppBar(props: Props) {
                         }}
                     >
                         {navItems.map((item) => (
-                            <Button component={StyledLink} key={item} to={item}>
+                            <Button component={StyledLink} key={item} to={'#'}>
                                 {item}
                             </Button>
                         ))}

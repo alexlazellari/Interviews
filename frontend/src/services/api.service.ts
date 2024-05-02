@@ -31,7 +31,7 @@ export async function fetchArticles(
     if (articleQuery.query) params.append('query', articleQuery.query);
     if (articleQuery.from) params.append('from', articleQuery.from);
     if (articleQuery.to) params.append('to', articleQuery.to);
-    if (articleQuery.sortBy) params.append('sort', articleQuery.sortBy);
+    if (articleQuery.sortBy) params.append('sortBy', articleQuery.sortBy);
 
     const config: AxiosRequestConfig = {
         headers: {
