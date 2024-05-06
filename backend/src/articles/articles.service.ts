@@ -38,7 +38,6 @@ export class ArticlesService {
       const response = await firstValueFrom(
         this.httpService.get(url).pipe(
           catchError((error: AxiosError) => {
-            console.error('Failed to fetch articles:', error.message);
             throw new Error('Error fetching articles');
           }),
         ),
@@ -58,7 +57,6 @@ export class ArticlesService {
 
       return articles; // Return the processed list of articles
     } catch (error) {
-      console.error('Error in findArticles method:', error);
       throw error;
     }
   }
