@@ -7,16 +7,27 @@ import { createTheme, CssBaseline } from '@mui/material';
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
-import Root from './routes/root';
-import Landing from './views/Landing';
 import NotFound from './views/Error';
+import Landing from './views/Landing';
+import Visitor from './layouts/Visitor';
+import News from './views/News';
+import './index.css';
 
 const router = createBrowserRouter([
     {
         path: '/',
-        element: <Root />,
+        element: <Visitor />,
         errorElement: <NotFound />,
-        children: [],
+        children: [
+            {
+                index: true,
+                element: <Landing />,
+            },
+            {
+                path: 'news',
+                element: <News />,
+            },
+        ],
     },
 ]);
 
