@@ -211,7 +211,7 @@ export default function News() {
                                             />
                                             <Typography fontSize="1.125rem">
                                                 Enter search terms to find
-                                                Articles!
+                                                articles!
                                             </Typography>
                                         </>
                                     )}
