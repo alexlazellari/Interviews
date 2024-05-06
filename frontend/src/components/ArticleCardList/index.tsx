@@ -13,6 +13,7 @@ const ArticleCardList: React.FC<ArticleCardListProps> = ({ articles }) => {
             sx={{ m: 0, mb: 4 }}
             columns={{ xs: 1, sm: 2, md: 3, lg: 4 }}
             spacing={2}
+            sequential
         >
             {articles.map((article, index) => (
                 <ArticleCard article={article} key={index} />

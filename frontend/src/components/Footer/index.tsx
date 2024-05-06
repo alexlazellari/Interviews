@@ -3,7 +3,8 @@ import { Box, Container, Link, Typography } from '@mui/material';
 
 const StyledFooter = styled(Box)`
     margin-top: 4rem;
-    max-height: 64px;
+    max-height: 4rem;
+    height: 4rem;
     margin: auto;
     padding-right: 0.5rem;
     border-top: 1px solid rgba(75, 67, 67, 0.2);
