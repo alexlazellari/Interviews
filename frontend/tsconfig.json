@@ -25,6 +25,6 @@
         "noImplicitThis": true,
         "strictNullChecks": true
     },
-    "include": ["src"],
+    "include": ["src", "src/utils"],
     "references": [{ "path": "./tsconfig.node.json" }]
 }
