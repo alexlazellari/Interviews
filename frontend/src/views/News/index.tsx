@@ -6,6 +6,7 @@ import ArticleCardList from '../../components/ArticleCardList';
 import {
     Button,
     CircularProgress,
+    Grid,
     InputAdornment,
     SelectChangeEvent,
     TextField,
@@ -108,15 +109,34 @@ export default function News() {
     return (
         <Box>
             <Form onSubmit={onSubmit}>
-                <Box
+                <Grid
+                    container
                     sx={{
-                        display: 'flex',
-                        flexDirection: { xs: 'column', lg: 'row' },
-                        gap: 1,
                         mb: 3.5,
                     }}
+                    spacing={1}
                 >
-                    <Box sx={{ flex: 1 }}>
+                    <Grid item xs={12} sm={6} md={4}>
+                        <BasicDatePicker
+                            label="From"
+                            value={from}
+                            onChange={onFromChange}
+                        />
+                    </Grid>
+
+                    <Grid item xs={12} sm={6} md={4}>
+                        <BasicDatePicker
+                            label="To"
+                            value={to}
+                            onChange={onToChange}
+                            minDate={from}
+                        />
+                    </Grid>
+
+                    <Grid item xs={12} md={4}>
+                        <Select value={sortBy} onChange={onSortByChange} />
+                    </Grid>
+                    <Grid item xs={12} sm={10} lg={10}>
                         <TextField
                             fullWidth
                             type="text"
@@ -134,41 +154,25 @@ export default function News() {
                                 ),
                             }}
                         />
-                    </Box>
-                    <Box
-                        sx={{
-                            display: 'flex',
-                            flexDirection: { xs: 'column', sm: 'row' },
-                            gap: 1,
-                        }}
-                    >
-                        <BasicDatePicker
-                            label="From"
-                            value={from}
-                            onChange={onFromChange}
-                        />
-                        <BasicDatePicker
-                            label="To"
-                            value={to}
-                            onChange={onToChange}
-                            minDate={from}
-                        />
-                    </Box>
-
-                    <Box>
-                        <Select value={sortBy} onChange={onSortByChange} />
-                    </Box>
-
-                    <Button
-                        type="submit"
-                        value="submit"
-                        variant="contained"
-                        disableElevation
-                        disabled={isLoading}
-                    >
-                        Search
-                    </Button>
-                </Box>
+                    </Grid>
+                    <Grid item xs={12} sm={2} lg={2}>
+                        <Button
+                            type="submit"
+                            value="submit"
+                            variant="contained"
+                            disableElevation
+                            disabled={isLoading || query === ''}
+                            sx={{
+                                height: {
+                                    sm: '100%',
+                                },
+                            }}
+                            fullWidth
+                        >
+                            Search
+                        </Button>
+                    </Grid>
+                </Grid>
             </Form>
 
             {isLoading ? (
@@ -201,7 +205,7 @@ export default function News() {
                                     ) : (
                                         <>
                                             <img
-                                                src="../../../search-news.png"
+                                                src="../../../search-news.svg"
                                                 alt="Type your query"
                                                 style={{
                                                     maxWidth: '450px',
