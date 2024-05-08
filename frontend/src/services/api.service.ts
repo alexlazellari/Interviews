@@ -13,6 +13,7 @@ export type ArticleQuery = {
     from?: string;
     to?: string;
     sortBy?: string;
+    pageSize?: number;
 };
 
 export type ArticleResponse = {
@@ -32,6 +33,8 @@ export async function fetchArticles(
     if (articleQuery.from) params.append('from', articleQuery.from);
     if (articleQuery.to) params.append('to', articleQuery.to);
     if (articleQuery.sortBy) params.append('sortBy', articleQuery.sortBy);
+    if (articleQuery.pageSize)
+        params.append('pageSize', articleQuery.pageSize.toString());
 
     const config: AxiosRequestConfig = {
         headers: {

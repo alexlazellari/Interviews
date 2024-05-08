@@ -4,7 +4,6 @@ import { ConfigService } from '@nestjs/config';
 import { HttpService } from '@nestjs/axios';
 import { of, throwError } from 'rxjs'; // Import the 'of' function from 'rxjs'
 import { AxiosResponse } from 'axios';
-import { HttpException } from '@nestjs/common';
 
 describe('ArticlesService', () => {
   let service: ArticlesService;
@@ -75,6 +74,7 @@ describe('ArticlesService', () => {
       from: '2021-01-01',
       to: '2021-01-02',
       sortBy: 'publishedAt',
+      pageSize: 10,
     };
 
     // Call the findArticles method
@@ -105,6 +105,7 @@ describe('ArticlesService', () => {
       from: '2021-01-01',
       to: '2021-01-02',
       sortBy: 'publishedAt',
+      pageSize: 10,
     };
 
     try {

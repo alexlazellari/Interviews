@@ -1,5 +1,12 @@
-// src/news/dto/find-news.dto.ts
-import { IsOptional, IsString, Length } from 'class-validator';
+import { Type } from 'class-transformer';
+import {
+  IsOptional,
+  IsString,
+  IsNumber,
+  Min,
+  Max,
+  Length,
+} from 'class-validator';
 
 export class FindArticlesDto {
   @IsString()
@@ -17,4 +24,10 @@ export class FindArticlesDto {
   @IsString()
   @IsOptional()
   sortBy?: string;
+
+  @IsNumber()
+  @Min(1)
+  @Max(100)
+  @Type(() => Number)
+  pageSize?: number;
 }

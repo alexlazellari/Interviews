@@ -4,9 +4,9 @@ import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
 import CardActions from '@mui/material/CardActions';
 import Link from '@mui/material/Link';
-import { Article } from '../../types/article.type';
+import { Article } from '../../../types/article.type';
 
-export default function ArticleCard({ article }: { article: Article }) {
+export default function ArticleMasonryItem({ article }: { article: Article }) {
     return (
         <Card sx={{ mb: 2 }}>
             {article.urlToImage && (

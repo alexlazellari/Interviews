@@ -1,18 +1,14 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
-import {
-    Box,
-    Typography,
-    Divider,
-    List,
-    AppBar,
-    IconButton,
-    Drawer,
-    Toolbar,
-    AppBarProps,
-    Button,
-    ListItem,
-} from '@mui/material';
+import Box from '@mui/material/Box';
+import Divider from '@mui/material/Divider';
+import List from '@mui/material/List';
+import AppBar, { AppBarProps } from '@mui/material/AppBar';
+import IconButton from '@mui/material/IconButton';
+import Drawer from '@mui/material/Drawer';
+import Toolbar from '@mui/material/Toolbar';
+import Button from '@mui/material/Button';
+import ListItem from '@mui/material/ListItem';
 import styled from 'styled-components';
 import { Menu } from '@mui/icons-material';
 import Logo from '../Logo';
