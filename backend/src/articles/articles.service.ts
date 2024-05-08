@@ -16,7 +16,7 @@ export class ArticlesService {
   async findArticles(findArticlesDto: FindArticlesDto): Promise<Article[]> {
     const apiKey = this.configService.get<string>('NEWS_API_KEY');
     const endpoint = this.configService.get<string>('NEWS_API_ENDPOINT');
-    const { query, from, to, sortBy } = findArticlesDto;
+    const { query, from, to, sortBy, pageSize } = findArticlesDto;
 
     // Create a new URLSearchParams object
     const params = new URLSearchParams();
@@ -26,10 +26,10 @@ export class ArticlesService {
     if (from) params.append('from', from);
     if (to) params.append('to', to);
     if (sortBy) params.append('sortBy', sortBy);
+    if (pageSize) params.append('pageSize', pageSize.toString());
 
     // Always add apiKey and pageSize since these are likely required
     params.append('apiKey', apiKey);
-    params.append('pageSize', '20');
 
     // Construct the final URL with the endpoint and the serialized parameters
     const url = `${endpoint}/everything?${params.toString()}`;

@@ -57,6 +57,7 @@ describe('ArticlesController', () => {
       from: '2021-01-01',
       to: '2021-01-02',
       sortBy: 'publishedAt',
+      pageSize: 10,
     };
     await controller.findArticles(dto, mockResponse as any);
 
@@ -82,6 +83,7 @@ describe('ArticlesController', () => {
       from: '2021-01-01',
       to: '2021-01-02',
       sortBy: 'publishedAt',
+      pageSize: 10,
     };
 
     await controller.findArticles(dto, mockResponse as any);

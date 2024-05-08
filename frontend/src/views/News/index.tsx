@@ -2,10 +2,10 @@ import { useState } from 'react';
 import { Form, useSearchParams } from 'react-router-dom';
 import { fetchArticles } from '../../services/api.service';
 import Box from '@mui/material/Box';
-import ArticleCardList from '../../components/ArticleCardList';
 import {
     Button,
     CircularProgress,
+    Grid,
     InputAdornment,
     SelectChangeEvent,
     TextField,
@@ -13,14 +13,21 @@ import {
 } from '@mui/material';
 import Select from '../../components/Select';
 import BasicDatePicker from '../../components/BasicDatePicker';
-import dayjs from 'dayjs';
+import dayjs, { Dayjs } from 'dayjs';
 import SearchIcon from '@mui/icons-material/Search';
 import { Article } from '../../types/article.type';
+import HorizontalToggleButtons from '../../components/HorizonalToggleButtons';
+import ArticleListView from '../../components/ArticleViews/ArticleListView';
+import ArticleMasonryView from '../../components/ArticleViews/ArticleMasonryView';
+import ArticleGridView from '../../components/ArticleViews/ArticleGridView';
+import ArticlePageSizeSelect from '../../components/ArticlePageSizeSelect';
 
 export default function News() {
+    const [pageSize, setPageSize] = useState(10);
     const [notFound, setNotFound] = useState(false);
     const [isLoading, setIsLoading] = useState(false);
     const [searchParams, setSearchParams] = useSearchParams();
+    const [view, setView] = useState('grid');
     const [from, setFrom] = useState(
         searchParams.get('from') ? dayjs(searchParams.get('from')) : null
     );
@@ -59,13 +66,13 @@ export default function News() {
         updateSearchParams({ query: event.target.value });
     };
 
-    const onFromChange = (newValue: dayjs.Dayjs) => {
+    const onFromChange = (newValue: Dayjs | null) => {
         setTo(null);
         setFrom(newValue);
         updateSearchParams({ from: newValue ? newValue.format() : '', to: '' });
     };
 
-    const onToChange = (newValue: dayjs.Dayjs) => {
+    const onToChange = (newValue: Dayjs | null) => {
         setTo(newValue);
         updateSearchParams({ to: newValue ? newValue.format() : '' });
     };
@@ -83,12 +90,14 @@ export default function News() {
             from: from?.format('YYYY-MM-DD'),
             to: to?.format('YYYY-MM-DD'),
             sortBy,
+            pageSize,
         });
         let articles = await fetchArticles({
             query,
             from: from?.format('YYYY-MM-DD'),
             to: to?.format('YYYY-MM-DD'),
             sortBy,
+            pageSize,
         });
         if (!articles || articles.length === 0) setNotFound(true);
         else {
@@ -105,18 +114,56 @@ export default function News() {
         }, 1000);
     };
 
+    const onPageSizeChange = (event: SelectChangeEvent) => {
+        setPageSize(event.target.value);
+    };
+
+    const onViewChange = (
+        event: React.MouseEvent<HTMLElement>,
+        view: string
+    ) => {
+        if (view !== null) {
+            setView(view);
+        }
+    };
+
     return (
         <Box>
             <Form onSubmit={onSubmit}>
-                <Box
+                <Grid
+                    container
                     sx={{
-                        display: 'flex',
-                        flexDirection: { xs: 'column', lg: 'row' },
-                        gap: 1,
                         mb: 3.5,
                     }}
+                    spacing={1}
                 >
-                    <Box sx={{ flex: 1 }}>
+                    <Grid item xs={12} sm={6} md={4}>
+                        <BasicDatePicker
+                            label="From"
+                            value={from}
+                            onChange={onFromChange}
+                        />
+                    </Grid>
+
+                    <Grid item xs={12} sm={6} md={4}>
+                        <BasicDatePicker
+                            label="To"
+                            value={to}
+                            onChange={onToChange}
+                            minDate={from}
+                        />
+                    </Grid>
+
+                    <Grid item xs={6} sm={6} md={4}>
+                        <Select value={sortBy} onChange={onSortByChange} />
+                    </Grid>
+                    <Grid item xs={6} sm={6} md={2}>
+                        <ArticlePageSizeSelect
+                            value={pageSize}
+                            onChange={onPageSizeChange}
+                        />
+                    </Grid>
+                    <Grid item xs={12} sm={10} md={8}>
                         <TextField
                             fullWidth
                             type="text"
@@ -134,41 +181,26 @@ export default function News() {
                                 ),
                             }}
                         />
-                    </Box>
-                    <Box
-                        sx={{
-                            display: 'flex',
-                            flexDirection: { xs: 'column', sm: 'row' },
-                            gap: 1,
-                        }}
-                    >
-                        <BasicDatePicker
-                            label="From"
-                            value={from}
-                            onChange={onFromChange}
-                        />
-                        <BasicDatePicker
-                            label="To"
-                            value={to}
-                            onChange={onToChange}
-                            minDate={from}
-                        />
-                    </Box>
+                    </Grid>
 
-                    <Box>
-                        <Select value={sortBy} onChange={onSortByChange} />
-                    </Box>
-
-                    <Button
-                        type="submit"
-                        value="submit"
-                        variant="contained"
-                        disableElevation
-                        disabled={isLoading}
-                    >
-                        Search
-                    </Button>
-                </Box>
+                    <Grid item xs={12} sm={2} md={2}>
+                        <Button
+                            type="submit"
+                            value="submit"
+                            variant="contained"
+                            disableElevation
+                            disabled={isLoading || query === ''}
+                            sx={{
+                                height: {
+                                    sm: '100%',
+                                },
+                            }}
+                            fullWidth
+                        >
+                            Search
+                        </Button>
+                    </Grid>
+                </Grid>
             </Form>
 
             {isLoading ? (
@@ -178,7 +210,23 @@ export default function News() {
             ) : (
                 <div>
                     {articles && articles.length > 0 ? (
-                        <ArticleCardList articles={articles} />
+                        <>
+                            <Box sx={{ textAlign: 'right', mb: 2 }}>
+                                <HorizontalToggleButtons
+                                    value={view}
+                                    onChange={onViewChange}
+                                />
+                            </Box>
+                            {view === 'grid' && (
+                                <ArticleGridView articles={articles} />
+                            )}
+                            {view === 'list' && (
+                                <ArticleListView articles={articles} />
+                            )}
+                            {view === 'masonry' && (
+                                <ArticleMasonryView articles={articles} />
+                            )}
+                        </>
                     ) : (
                         <div>
                             <Box sx={{ textAlign: 'center', mt: 4, mb: 8 }}>
@@ -201,7 +249,7 @@ export default function News() {
                                     ) : (
                                         <>
                                             <img
-                                                src="../../../search-news.png"
+                                                src="../../../search-news.svg"
                                                 alt="Type your query"
                                                 style={{
                                                     maxWidth: '450px',
