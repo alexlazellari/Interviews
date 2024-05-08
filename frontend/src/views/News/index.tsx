@@ -2,7 +2,6 @@ import { useState } from 'react';
 import { Form, useSearchParams } from 'react-router-dom';
 import { fetchArticles } from '../../services/api.service';
 import Box from '@mui/material/Box';
-import ArticleCardList from '../../components/ArticleViews/ArticleMasonryView';
 import {
     Button,
     CircularProgress,
@@ -21,8 +20,10 @@ import HorizontalToggleButtons from '../../components/HorizonalToggleButtons';
 import ArticleListView from '../../components/ArticleViews/ArticleListView';
 import ArticleMasonryView from '../../components/ArticleViews/ArticleMasonryView';
 import ArticleGridView from '../../components/ArticleViews/ArticleGridView';
+import ArticlePageSizeSelect from '../../components/ArticlePageSizeSelect';
 
 export default function News() {
+    const [pageSize, setPageSize] = useState(10);
     const [notFound, setNotFound] = useState(false);
     const [isLoading, setIsLoading] = useState(false);
     const [searchParams, setSearchParams] = useSearchParams();
@@ -89,12 +90,14 @@ export default function News() {
             from: from?.format('YYYY-MM-DD'),
             to: to?.format('YYYY-MM-DD'),
             sortBy,
+            pageSize,
         });
         let articles = await fetchArticles({
             query,
             from: from?.format('YYYY-MM-DD'),
             to: to?.format('YYYY-MM-DD'),
             sortBy,
+            pageSize,
         });
         if (!articles || articles.length === 0) setNotFound(true);
         else {
@@ -109,6 +112,10 @@ export default function News() {
         setTimeout(() => {
             setIsLoading(false);
         }, 1000);
+    };
+
+    const onPageSizeChange = (event: SelectChangeEvent) => {
+        setPageSize(event.target.value);
     };
 
     const onViewChange = (
@@ -147,10 +154,16 @@ export default function News() {
                         />
                     </Grid>
 
-                    <Grid item xs={12} md={4}>
+                    <Grid item xs={6} sm={6} md={4}>
                         <Select value={sortBy} onChange={onSortByChange} />
                     </Grid>
-                    <Grid item xs={12} sm={10} lg={10}>
+                    <Grid item xs={6} sm={6} md={2}>
+                        <ArticlePageSizeSelect
+                            value={pageSize}
+                            onChange={onPageSizeChange}
+                        />
+                    </Grid>
+                    <Grid item xs={12} sm={10} md={8}>
                         <TextField
                             fullWidth
                             type="text"
@@ -169,7 +182,8 @@ export default function News() {
                             }}
                         />
                     </Grid>
-                    <Grid item xs={12} sm={2} lg={2}>
+
+                    <Grid item xs={12} sm={2} md={2}>
                         <Button
                             type="submit"
                             value="submit"
