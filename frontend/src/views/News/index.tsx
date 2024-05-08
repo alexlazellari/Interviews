@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { Form, useSearchParams } from 'react-router-dom';
 import { fetchArticles } from '../../services/api.service';
 import Box from '@mui/material/Box';
-import ArticleCardList from '../../components/ArticleCardList';
+import ArticleCardList from '../../components/ArticleViews/ArticleMasonryView';
 import {
     Button,
     CircularProgress,
@@ -14,14 +14,19 @@ import {
 } from '@mui/material';
 import Select from '../../components/Select';
 import BasicDatePicker from '../../components/BasicDatePicker';
-import dayjs from 'dayjs';
+import dayjs, { Dayjs } from 'dayjs';
 import SearchIcon from '@mui/icons-material/Search';
 import { Article } from '../../types/article.type';
+import HorizontalToggleButtons from '../../components/HorizonalToggleButtons';
+import ArticleListView from '../../components/ArticleViews/ArticleListView';
+import ArticleMasonryView from '../../components/ArticleViews/ArticleMasonryView';
+import ArticleGridView from '../../components/ArticleViews/ArticleGridView';
 
 export default function News() {
     const [notFound, setNotFound] = useState(false);
     const [isLoading, setIsLoading] = useState(false);
     const [searchParams, setSearchParams] = useSearchParams();
+    const [view, setView] = useState('grid');
     const [from, setFrom] = useState(
         searchParams.get('from') ? dayjs(searchParams.get('from')) : null
     );
@@ -60,13 +65,13 @@ export default function News() {
         updateSearchParams({ query: event.target.value });
     };
 
-    const onFromChange = (newValue: dayjs.Dayjs) => {
+    const onFromChange = (newValue: Dayjs | null) => {
         setTo(null);
         setFrom(newValue);
         updateSearchParams({ from: newValue ? newValue.format() : '', to: '' });
     };
 
-    const onToChange = (newValue: dayjs.Dayjs) => {
+    const onToChange = (newValue: Dayjs | null) => {
         setTo(newValue);
         updateSearchParams({ to: newValue ? newValue.format() : '' });
     };
@@ -104,6 +109,15 @@ export default function News() {
         setTimeout(() => {
             setIsLoading(false);
         }, 1000);
+    };
+
+    const onViewChange = (
+        event: React.MouseEvent<HTMLElement>,
+        view: string
+    ) => {
+        if (view !== null) {
+            setView(view);
+        }
     };
 
     return (
@@ -182,7 +196,23 @@ export default function News() {
             ) : (
                 <div>
                     {articles && articles.length > 0 ? (
-                        <ArticleCardList articles={articles} />
+                        <>
+                            <Box sx={{ textAlign: 'right', mb: 2 }}>
+                                <HorizontalToggleButtons
+                                    value={view}
+                                    onChange={onViewChange}
+                                />
+                            </Box>
+                            {view === 'grid' && (
+                                <ArticleGridView articles={articles} />
+                            )}
+                            {view === 'list' && (
+                                <ArticleListView articles={articles} />
+                            )}
+                            {view === 'masonry' && (
+                                <ArticleMasonryView articles={articles} />
+                            )}
+                        </>
                     ) : (
                         <div>
                             <Box sx={{ textAlign: 'center', mt: 4, mb: 8 }}>
