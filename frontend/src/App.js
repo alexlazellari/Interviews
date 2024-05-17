@@ -15,9 +15,7 @@ function App() {
         <Route exact path="/">
           <Home />
         </Route>
-        <Route path="/activities" exact>
-          <Activities />
-        </Route>
+        <Route path="/activities" component={Activities} exact />
         <Route path="/contributing">
           <Contributing />
         </Route>

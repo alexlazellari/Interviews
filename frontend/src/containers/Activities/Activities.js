@@ -2,7 +2,8 @@ import React from "react";
 import Tips from "../../components/Tips/Tips";
 import Table from "../../components/Table/Table";
 
-const Activities = () => {
+const Activities = (props) => {
+  console.log(props);
   return (
     <main className="main">
       <header className="main__header">
