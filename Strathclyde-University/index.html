@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Meta character-encoding -->
+    <meta charset="UTF-8" />
+    <!-- Meta authors -->
+    <meta name="author" content="Alex Lazellari" />
+    <!-- Meta internet explorer edge -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <!-- Meta view port -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- Meta title -->
+    <title>The Incredible Glasgow | Home</title>
+    <!-- Meta description -->
+    <meta
+      name="description"
+      content="This is a website that give people information on Scotland, especially Glasgow. It also display the current weather in Glasgow."
+    />
+    <!-- Meta keywords -->
+    <meta
+      name="keywords"
+      content="strathclyde university, glasgow, weather, cosmopolitan city"
+    />
+    <!-- Favicon -->
+    <link
+      rel="icon"
+      sizes="32x32"
+      href="https://t3.ftcdn.net/jpg/04/40/29/06/360_F_440290647_qE1TkUBCNsG13SNkDYxp3EbGiVOKF2Rv.jpg"
+    />
+    <!-- CSS -->
+    <link rel="stylesheet" href="./styles/style.css" />
+    <!-- JavaScript -->
+    <script src="./script.js" defer></script>
+    <!-- Font awesome -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css"
+    />
+  </head>
+  <body>
+    <div class="container">
+      <!-- Main -->
+      <main class="main">
+        <!-- Main header -->
+        <h1 class="main__title">Glasgow</h1>
+
+        <!-- About Section -->
+        <section class="section">
+          <!-- Section header -->
+          <h2 class="section__title">
+            Glasgow is Scotland's biggest &amp; most cosmopolitan city
+          </h2>
+
+          <!-- section card -->
+          <article class="card">
+            <div class="card__body">
+              <p class="card__copy">
+                Our campus is based right in the very heart of Glasgow. National
+                Geographic named Glasgow as one of its
+                <em>'Best of the World'</em>
+                destinations, while Rough Guide readers voted Glasgow the
+                world’s friendliest city!
+                <a
+                  href="https://www.timeout.com/things-to-do/best-cities-in-the-world?fbclid=IwAR3O1rpyXg_0-ZSihZmo0CPBDENl6oKBAqViooK9VtaiC1ZDr8jU6qfwGjg"
+                  target="_blank"
+                >
+                  Glasgow was listed among the top ten best cities.
+                </a>
+                <br />
+                We're in the city centre, next to the Merchant City, both of
+                which are great locations for sightseeing, shopping and
+                socialising alongside your studies.
+              </p>
+            </div>
+            <footer class="card__footer">
+              <div class="card__actions">
+                <a
+                  class="card__link"
+                  href="https://www.strath.ac.uk/whystrathclyde/glasgow/"
+                  target="_blank"
+                >
+                  Broaden Your Knowledge
+                </a>
+              </div>
+            </footer>
+          </article>
+          <!-- End section card -->
+        </section>
+        <!-- End about section -->
+
+        <hr />
+
+        <!-- Campus section -->
+        <section class="section campus">
+          <!-- Section header -->
+          <h2 class="section__title">Activities available on campus</h2>
+
+          <!-- section card -->
+          <article class="card">
+            <div class="card__header">
+              <figure class="card__figure">
+                <img
+                  src="https://www.strath.ac.uk/media/1newwebsite/images-general/cityimages/glasgow-necropolis-900x600.jpg"
+                  alt="Glasgow's Necropolis A Victorian cemetery"
+                  class="card__image"
+                />
+              </figure>
+            </div>
+            <div class="card__body">
+              <p class="card__copy">
+                We've picked out some of the highlights of things to do around
+                campus, all within walking distance, including:
+              </p>
+              <ul class="list">
+                <li class="list__item">The city's mural trail</li>
+                <li class="list__item">
+                  Breathtaking views of the Glasgow from the Necropolis
+                </li>
+                <li class="list__item">The bustle of Buchanan Street</li>
+              </ul>
+              <p class="card__copy">And lots more!</p>
+            </div>
+            <footer class="card__footer">
+              <div class="card__actions">
+                <a
+                  class="card__link"
+                  href="https://www.strath.ac.uk/whystrathclyde/glasgow/thingstodoaroundcampus/"
+                  target="_blank"
+                >
+                  Explore Our Campus
+                </a>
+              </div>
+            </footer>
+          </article>
+          <!-- End section card -->
+        </section>
+        <!-- End campus section -->
+
+        <hr />
+
+        <!-- Scotland opportunities section -->
+        <section class="section">
+          <!-- Section header -->
+          <h2 class="section__title">Discover Scotland</h2>
+
+          <!-- section card -->
+          <article class="card">
+            <div class="card__body">
+              <p class="card__copy">
+                With the city of Glasgow as your base, you're in the perfect
+                location to explore some of the most beautiful scenery in the
+                world!
+                <br />
+                Breathtaking views, historic castles, beautiful coastlines -
+                Scotland has it all!
+              </p>
+            </div>
+            <footer class="card__footer">
+              <div class="card__actions">
+                <a
+                  class="card__link"
+                  href="https://www.strath.ac.uk/whystrathclyde/discoverscotland/"
+                  target="_blank"
+                >
+                  Discover Scotland
+                </a>
+              </div>
+            </footer>
+          </article>
+          <!-- End section card -->
+        </section>
+        <!-- End campus section -->
+
+        <hr />
+
+        <!-- Sign up form -->
+        <form class="form" method="GET" action="https://www.strath.ac.uk">
+          <h1 class="form__title">Sign up to hear more</h1>
+          <div class="input-group">
+            <label for="name" class="input-group__label">Name *</label>
+            <input
+              type="text"
+              id="name"
+              class="input-group__input"
+              placeholder="John Smith"
+              minlength="4"
+              maxlength="64"
+              required
+            />
+            <span class="input-group__help"> This is a help text. </span>
+          </div>
+          <div class="input-group">
+            <label for="email" class="input-group__label">Email *</label>
+            <input
+              type="email"
+              id="email"
+              class="input-group__input"
+              maxlength="128"
+              placeholder="example@email.com"
+              required
+            />
+            <span class="input-group__help"> This is a help text. </span>
+          </div>
+
+          <div class="form__actions">
+            <button type="submit" class="button" value="Submit">
+              <span class="button__prepend">
+                <i class="fas fa-paper-plane"></i>
+              </span>
+              <span class="button__body">Submit</span>
+            </button>
+          </div>
+
+          <div class="form__row">
+            <details class="form__details">
+              <summary class="form__summary">(*) Required Field</summary>
+              <p>Fields with the star symbol are required.</p>
+            </details>
+          </div>
+        </form>
+        <!-- End sign up form -->
+      </main>
+      <!-- End Main -->
+      <!-- Aside -->
+      <div class="sidebar">
+        <aside>
+          <div class="tabs">
+            <ul class="tabs__list" role="tablist">
+              <li
+                class="tabs__item active"
+                role="tab"
+                data-tab-target="#information"
+              >
+                Information
+              </li>
+              <li
+                class="tabs__item"
+                role="tab"
+                data-tab-target="#current-weather"
+              >
+                Current Weather
+              </li>
+            </ul>
+            <section
+              id="information"
+              class="tabs__section active"
+              role="tabpanel"
+              data-tab-content
+            >
+              <article class="tabs__article">
+                <div class="tabs__header">
+                  <figure class="tabs__figure">
+                    <img
+                      src="https://openweathermap.org/img/wn/04d@2x.png"
+                      alt="clouds"
+                      class="tabs__image"
+                      width="100px"
+                      height="100px"
+                    />
+                  </figure>
+                </div>
+                <div class="tabs__body">
+                  <h2 class="tabs__title">Lorem Ipsum</h2>
+                  <h3 class="tabs__subtitle">A dummy text</h3>
+                  <p class="tabs__copy">
+                    Lorem Ipsum is simply dummy text of the printing and
+                    typesetting industry. Lorem Ipsum has been the industry's
+                    standard dummy text ever since the 1500s, when an unknown
+                    printer took a galley of type and scrambled it to make a
+                    type specimen book.
+                  </p>
+                </div>
+              </article>
+            </section>
+            <section
+              id="current-weather"
+              class="tabs__section"
+              data-tab-content
+            >
+              <div class="tabs__body">
+                <article class="tabs">
+                  <div class="tabs__header">
+                    <figure class="tabs__figure">
+                      <img
+                        src="https://openweathermap.org/img/wn/03d@2x.png"
+                        alt="clouds"
+                        class="tabs__image"
+                        width="100px"
+                        height="100px"
+                      />
+                    </figure>
+                  </div>
+                  <div class="tabs__body">
+                    <h2 class="tabs__title">Weather</h2>
+                    <h3 class="tabs__subtitle">Location</h3>
+                    <p class="tabs__copy">
+                      Lorem Ipsum is simply dummy text of the printing and
+                      typesetting industry. Lorem Ipsum has been the industry's
+                      standard dummy text ever since the 1500s, when an unknown
+                      printer took a galley of type and scrambled it to make a
+                      type specimen book.
+                    </p>
+                  </div>
+                </article>
+              </div>
+            </section>
+          </div>
+        </aside>
+        <!-- Optional div here -->
+        <!-- <div></div> -->
+      </div>
+
+      <!-- End Aside -->
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <p class="footer__copyright">
+        Created by Alex Lazellari. All rights reserved.
+      </p>
+    </footer>
+    <!-- End Footer -->
+  </body>
+</html>
+
+<!--
+Welcome to the University of Strathclyde Front-End Developer test
+This test is made up of two tasks. 
+For both tasks, you must ensure any changes and developments are WCAG 2.1 AA compliant.
+The tasks are worth 10 points each.
+
+1. 
+Review the page provided then identify and resolve as many accessibility issues as possible. 
+Don't worry about colour - there are no brand guidelines to conform to.
+
+2. 
+Add a new area to the page called "Glasgow weather". 
+In this, create two tabs controlled by JavaScript.
+Label the first tab "Information" and the second tab "Current weather". 
+Feel free to add some basic styling. 
+In the first tab, include some placeholder copy (feel free to use lorem ipsum).
+When the "Current weather" tab is clicked, make a call to the OpenWeather API to get the current weather status and current temperature. 
+Display the temperature alongside the correct weather icon using the icon code provided by the API and the icon URL example provided below. 
+Again, feel free to add some basic styling.
+
+API: https://api.openweathermap.org/data/2.5/weather?q=Glasgow&units=metric&APPID=65e503e76e92014dd7d82f5474a21527
+Weather icon URL example: https://openweathermap.org/img/wn/04d@2x.png
+-->
