@@ -1,0 +1,63 @@
+/*********************** Activities Form styling ***********************/
+
+.activities{
+    border-collapse: collapse;
+    box-shadow: 0 0 7px 0 rgba(80, 80, 80, 0.4);
+    border-radius: 7px;
+    color:#333;
+    font-size: .75rem;
+    margin: 1rem auto;
+    margin-bottom: 3rem;
+    max-width: 850px;
+    width: 100%;
+}
+
+.activities__header{
+    background-color: rgba(255, 152, 0, 0.8);
+    color: #fff;
+    letter-spacing: 1px;
+    padding: .25rem;
+    text-align: start;
+}
+
+
+.main__actions{
+    text-align: center;
+}
+
+.btn{
+    background-color: #ff9800;
+    border: 1px solid #ff9800;
+    border-radius: 5px;
+    bottom: 2.5rem;
+    box-shadow: 0 0 5px 0 rgba(80, 80, 80, 0.6);
+    color: #fff;
+    cursor: pointer;
+    font-size: .75rem;
+    font-weight: 700;
+    outline: none;
+    padding: .25rem .5rem;
+    transition: background-color .5s, color .4s;
+}
+
+.btn:hover{
+    background-color: transparent;
+    color: #333;
+    outline: none;
+}
+
+/*********************** End activities Form styling ***********************/
+
+
+
+/*********************** Media queries ***********************/
+
+@media screen and ( min-width: 520px) {
+
+    .activities__header{
+        padding: .75rem 1rem;
+    }
+
+}
+
+/*********************** End media queries ***********************/

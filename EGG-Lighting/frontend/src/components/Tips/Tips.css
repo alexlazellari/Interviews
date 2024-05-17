@@ -1,0 +1,14 @@
+/*********************** Media queries ***********************/
+
+@media screen and ( min-width: 520px) {
+
+
+    .tips{
+        display: flex;
+        justify-content: space-evenly;
+        flex-wrap: wrap;
+    }
+
+}
+
+/*********************** End media queries ***********************/
